@@ -1384,7 +1384,7 @@
         <div class="topbar">
           <div class="container-fluid">
             <div class="row">
-              <div class="col-md-4 col-4 d-flex"><a class="homelogo" href="{{route('client-home')}}"><i class="fa fa-home"></i><img _ngcontent-uhn-c72="" class="logo-login" src="https://newsilver.art/public/assets/logo2.png"><!----></a></div>
+              <div class="col-md-4 col-4 d-flex"><a class="homelogo" href="{{route('client-home')}}"><i class="fa fa-home"></i><img _ngcontent-uhn-c72="" class="logo-login" src="https://crickekbuz.art/public/assets/logo2.png"><!----></a></div>
               <div class="col-md-8 col-8">
                 <ul class="top-right">
                   <li class="searchbar"><!----><input id="SearchInput" typeaheadoptionfield="name" placeholder="All Events" autocomplete="off" class="form-control ng-untouched ng-pristine ng-valid" style="display: none;" aria-expanded="false" aria-autocomplete="list"><!----><a href="javascript:void(0)"><i class="fa fa-search-plus"></i></a></li>
@@ -1553,7 +1553,7 @@
 
 
                           @foreach($response['match_odds'] as $r)
-                          <div class="randerScore mainScore">
+                          <div class="randerScore mainScore matchoddclass">
                             <div class="odds_rows">
                               <div class="events_odds"><!---->
                                 <div class="event-names">
@@ -9858,6 +9858,71 @@
       }
     }, 2000)
   </script>
+<!-- Include jQuery (or you can use plain JavaScript or another library) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    function loadCricketDetails() {
+        var game_id = "{{ $game_id }}"; // Replace with your actual game ID or pass it dynamically
+        
+        $.ajax({
+            url: '/cricketbzz/cricket-details/' + game_id, // Update with your actual route
+            method: 'GET',
+            success: function(data) {
+                updateCricketDetails(data);
+            },
+            error: function(xhr, status, error) {
+                console.error('Error fetching cricket details:', error);
+            }
+        });
+    }
+
+    function updateCricketDetails(data) {
+      console.log(data);
+        // Update the HTML with new data (example below, adapt as needed)
+        var matchOddsHtml = '';
+        $.each(data.response.match_odds, function(index, r) {
+            matchOddsHtml += `
+                <div class="randerScore mainScore">
+                    <div class="odds_rows">
+                        <div class="events_odds">
+                            <div class="event-names">
+                                <div class="horse-event">
+                                    <div class="slogen-horce"><span class="team-horce team_name">${r.team_name}</span></div>
+                                </div>
+                                <div></div>
+                            </div>
+                        </div>
+                        <div class="odds_bhav">
+                            ${r.back_status == 1 ? `
+                            <div class="back_oddsbox bhav_box">
+                                <strong class="odds ng-binding bet_text" data-back-lay="back" data-match-stake="${r.stake}" data-match-id="${r.id}" data-team-name="${r.team_name}">${r.back_value}</strong>
+                                <div class="size"><span class="ng-binding" id="back-value-${r.id}">244.82</span></div>
+                            </div>` : `
+                            <div style="background:white !important;" class="back_oddsbox bhav_box"></div>`}
+                            
+                            ${r.lay_status == 1 ? `
+                            <div class="Lay_oddsbox bhav_box">
+                                <strong class="odds ng- bet_text" data-back-lay="lay" data-match-stake="${r.stake}" data-match-id="${r.id}" data-team-name="${r.team_name}">${r.lay_value}</strong>
+                                <div class="size"><span class="ng-binding" id="lay-value-${r.id}">8145.17</span></div>
+                            </div>` : `
+                            <div style="background:white !important;" class="Lay_oddsbox bhav_box"></div>`}
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        $('.matchoddclass').html(matchOddsHtml); // Update with your actual container class
+    }
+
+    // Load cricket details every 5 seconds
+    // setInterval(loadCricketDetails, 5000);
+    
+    // // Initial load
+    // loadCricketDetails();
+});
+</script>
 
   <script>
     //  @if(!empty(Session::get('myBets')))
@@ -9877,7 +9942,7 @@
     //  $(".my-bet-table").append(nodata);
     //  @endif
   </script>
-  <script>
+  <!-- <script>
     $(".remove_bet").click(function() {
       $(".show_bet").hide();
     });
@@ -9935,8 +10000,8 @@
       // Initial call to display the scorecard immediately on page load
       updateScorecard();
     });
-  </script>
-  <script>
+  </script> -->
+  <!-- <script>
     $(document).ready(function() {
       setInterval(function() {
         // Loop through each odds box
@@ -9973,7 +10038,7 @@
         @endforeach
       }, 5000); // 5000 milliseconds = 5 seconds
     });
-  </script>
+  </script> -->
   <script>
     document.getElementById('liveMatchLink').addEventListener('click', function() {
 

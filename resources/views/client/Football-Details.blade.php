@@ -72,6 +72,12 @@
             </tabset><!---->
           </div>
           <div class="col-md-8">
+          <?php if ($_SERVER['HTTP_USER_AGENT'] && strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) { ?>
+            <div class="betting-table lay-bt" style="position: relative;">
+                  <h2 _ngcontent-uhn-c87="" class="mrkname" id="liveMatchLink"> Live Match </h2>
+                </div>
+                <div id="liveTvMatch"></div>
+            <?php } ?>
             <h2 class="event-title">{{$game_single['game_title']}}</h2>
             <div id="scoreCard" class="multi-collapse">
               <div class="col-12 px-0"><app-score-card class="scoreCard_game"><!----></app-score-card></div>
@@ -323,12 +329,13 @@
 
                 <!-- // Otherwise, use desktop styles -->
                 <div id="rightBarDiv" class="bets_box-main ">
-                <?php  } ?>
-
                 <div class="betting-table lay-bt" style="position: relative;">
                   <h2 _ngcontent-uhn-c87="" class="mrkname" id="liveMatchLink"> Live Match </h2>
                 </div>
                 <div id="liveTvMatch"></div>
+                <?php  } ?>
+
+               
 
 
 

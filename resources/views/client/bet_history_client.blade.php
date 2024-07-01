@@ -113,9 +113,10 @@
                     <table id="" class="table table-bordered btDataTable table-striped table-bordered" style="width: 100%;">
                         <thead>
                             <tr>
-                                <th class="text-center">Bet ID</th>
+                            <th class="text-center">Bet ID</th>
                                 <th class="text-center">Event Name</th>
                                 <th class="text-center">Event Type</th>
+                                <th class="text-center">Bet stake</th>
                                 <th class="text-center">Win/Loss</th>
                                 <th class="text-center">Placed Time</th>
                                 <th class="text-center">Settled Time</th>
@@ -127,12 +128,24 @@
                             <tr class="back">
                                 <td class="text-center">{{$bet->id}}</td>
                                 <td class="text-center">{{$bet->team_name}}</td>
-                                <td class="text-center">CRICKET</td>
-                                <td class="text-center green">{{$bet->bet_stake}}</td>
-                                <!--<td class="text-center green"> {{ ($bet->bet_result==1 ? 'WIN' : $bet->bet_result==2) ? 'LOSE' : 'Not Published' }}</td>-->
+                                <td class="text-center">Football</td>
+                                <td class="text-center">{{$bet->bet_stake}}</td>
+                                <!--@if($bet->bet_result != NULL)-->
+                                <!--<td class="text-center green">{{$bet->bet_stake}}</td>-->
+                                <!--@else-->
+                                <!--<td class="text-center red">{{$bet->bet_stake}}</td>-->
+                                <!--@endif-->
+                                @if($bet->bet_result == 1)
+                                <td class="text-center green">{{$bet->bet_profit}}</td>
+                                @elseif($bet->bet_result == 2)
+                                 <td class="text-center red"> {{$bet->bet_stake}}</td>
+                                 @else
+                                  <td class="text-center black"> - </td>
+                                @endif
                                 <td class="text-center">{{$bet->created_at}}</td>
                                 <td class="text-center">{{$bet->created_at}}</td>
                             </tr>
+                           
                             @endforeach
                         </tbody>
                     </table>
@@ -142,9 +155,10 @@
                     <table id="" class="table table-bordered btDataTable table-striped table-bordered" style="width: 100%;">
                         <thead>
                             <tr>
-                                <th class="text-center">Bet ID</th>
+                            <th class="text-center">Bet ID</th>
                                 <th class="text-center">Event Name</th>
                                 <th class="text-center">Event Type</th>
+                                <th class="text-center">Bet stake</th>
                                 <th class="text-center">Win/Loss</th>
                                 <th class="text-center">Placed Time</th>
                                 <th class="text-center">Settled Time</th>
@@ -154,11 +168,22 @@
                             
                             @foreach($tennisBets as $bet)
                             <tr class="back">
-                                 <td class="text-center">{{$bet->id}}</td>
+                                <td class="text-center">{{$bet->id}}</td>
                                 <td class="text-center">{{$bet->team_name}}</td>
-                                <td class="text-center">CRICKET</td>
-                                <td class="text-center green">{{$bet->bet_stake}}</td>
-                                <!--<td class="text-center green"> {{ ($bet->bet_result==1 ? 'WIN' : $bet->bet_result==2) ? 'LOSE' : 'Not Published' }}</td>-->
+                                <td class="text-center">Tennis</td>
+                                <td class="text-center">{{$bet->bet_stake}}</td>
+                                <!--@if($bet->bet_result != NULL)-->
+                                <!--<td class="text-center green">{{$bet->bet_stake}}</td>-->
+                                <!--@else-->
+                                <!--<td class="text-center red">{{$bet->bet_stake}}</td>-->
+                                <!--@endif-->
+                                @if($bet->bet_result == 1)
+                                <td class="text-center green">{{$bet->bet_profit}}</td>
+                                @elseif($bet->bet_result == 2)
+                                 <td class="text-center red"> {{$bet->bet_stake}}</td>
+                                 @else
+                                  <td class="text-center black"> - </td>
+                                @endif
                                 <td class="text-center">{{$bet->created_at}}</td>
                                 <td class="text-center">{{$bet->created_at}}</td>
                             </tr>
@@ -171,9 +196,10 @@
                     <table id="" class="table table-bordered btDataTable table-striped table-bordered" style="width: 100%;">
                         <thead>
                             <tr>
-                                 <th class="text-center">Bet ID</th>
+                            <th class="text-center">Bet ID</th>
                                 <th class="text-center">Event Name</th>
                                 <th class="text-center">Event Type</th>
+                                <th class="text-center">Bet stake</th>
                                 <th class="text-center">Win/Loss</th>
                                 <th class="text-center">Placed Time</th>
                                 <th class="text-center">Settled Time</th>
@@ -185,9 +211,20 @@
                             <tr class="back">
                                 <td class="text-center">{{$bet->id}}</td>
                                 <td class="text-center">{{$bet->team_name}}</td>
-                                <td class="text-center">CRICKET</td>
-                                <td class="text-center green">{{$bet->bet_stake}}</td>
-                                <!--<td class="text-center green"> {{ ($bet->bet_result==1 ? 'WIN' : $bet->bet_result==2) ? 'LOSE' : 'Not Published' }}</td>-->
+                                <td class="text-center">Horse</td>
+                                <td class="text-center">{{$bet->bet_stake}}</td>
+                                <!--@if($bet->bet_result != NULL)-->
+                                <!--<td class="text-center green">{{$bet->bet_stake}}</td>-->
+                                <!--@else-->
+                                <!--<td class="text-center red">{{$bet->bet_stake}}</td>-->
+                                <!--@endif-->
+                                @if($bet->bet_result == 1)
+                                <td class="text-center green">{{$bet->bet_profit}}</td>
+                                @elseif($bet->bet_result == 2)
+                                 <td class="text-center red"> {{$bet->bet_stake}}</td>
+                                 @else
+                                  <td class="text-center black"> - </td>
+                                @endif
                                 <td class="text-center">{{$bet->created_at}}</td>
                                 <td class="text-center">{{$bet->created_at}}</td>
                             </tr>
@@ -200,9 +237,10 @@
                     <table id="" class="table table-bordered btDataTable table-striped table-bordered" style="width: 100%;">
                         <thead>
                             <tr>
-                                <th class="text-center">Bet ID</th>
+                            <th class="text-center">Bet ID</th>
                                 <th class="text-center">Event Name</th>
                                 <th class="text-center">Event Type</th>
+                                <th class="text-center">Bet stake</th>
                                 <th class="text-center">Win/Loss</th>
                                 <th class="text-center">Placed Time</th>
                                 <th class="text-center">Settled Time</th>
@@ -212,11 +250,22 @@
                             
                             @foreach($greyhoundBets as $bet)
                             <tr class="back">
-                               <td class="text-center">{{$bet->id}}</td>
+                                <td class="text-center">{{$bet->id}}</td>
                                 <td class="text-center">{{$bet->team_name}}</td>
-                                <td class="text-center">CRICKET</td>
-                                <td class="text-center green">{{$bet->bet_stake}}</td>
-                                <!--<td class="text-center green"> {{ ($bet->bet_result==1 ? 'WIN' : $bet->bet_result==2) ? 'LOSE' : 'Not Published' }}</td>-->
+                                <td class="text-center">Greyhound</td>
+                                <td class="text-center">{{$bet->bet_stake}}</td>
+                                <!--@if($bet->bet_result != NULL)-->
+                                <!--<td class="text-center green">{{$bet->bet_stake}}</td>-->
+                                <!--@else-->
+                                <!--<td class="text-center red">{{$bet->bet_stake}}</td>-->
+                                <!--@endif-->
+                                @if($bet->bet_result == 1)
+                                <td class="text-center green">{{$bet->bet_profit}}</td>
+                                @elseif($bet->bet_result == 2)
+                                 <td class="text-center red"> {{$bet->bet_stake}}</td>
+                                 @else
+                                  <td class="text-center black"> - </td>
+                                @endif
                                 <td class="text-center">{{$bet->created_at}}</td>
                                 <td class="text-center">{{$bet->created_at}}</td>
                             </tr>

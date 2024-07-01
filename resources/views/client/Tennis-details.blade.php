@@ -121,7 +121,7 @@
               @endif
 
               <!--<div id="rightBarDiv" class="bets_box-main"> ---->
-              <app-bet-slip _nghost-xyn-c87="">
+              <app-bet-slip _nghost-xyn-c87="" class="show_bet">
                 <form action="{{route('tennis-bet-place')}}" method="POST">
                   @csrf
                   <div class="betting-table lay-bt" style="position: relative;">
@@ -200,6 +200,7 @@
 @section('script')
 
 <script>
+
   $(function() {
     @if(empty(Session::get('myBets')))
     $(".show_bet").hide();

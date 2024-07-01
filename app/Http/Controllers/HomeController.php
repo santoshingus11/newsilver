@@ -57,7 +57,7 @@ class HomeController extends Controller
 // if ($game_id == 1) {
 //             return view('client.Cricket-details-ipl', compact('response', 'game_single'));
 //         }
-        return view('client.Cricket-details',compact('response','game_single'));
+        return view('client.Cricket-details',compact('response','game_single','game_id'));
     }
     
     public function cricket_bet_place(Request $request){
@@ -214,7 +214,7 @@ class HomeController extends Controller
         }
         
         $user_id =  Auth::guard('client')->user()->id;
-        
+     
         $placeBet = new FootballPlaceBet();
         $placeBet->match_id = $request->match_id;
         $placeBet->bet_odds = $request->bet_odds;
@@ -226,9 +226,13 @@ class HomeController extends Controller
         $placeBet->save();
         
         $user = Admin::findOrFail($user_id);
-        $user->balance = $user->balance - $request->bet_stake;
-        $user->save();
-        
+        $update_balance = [
+                'balance' => $user->balance - $request->bet_stake
+            ];
+       Admin::where('id',$user_id)->update($update_balance);
+        // $user->balance = $user->balance - $request->bet_stake;
+        // $user->save();
+       
         $played_matches = FootballPlaceBet::where('user_id',$user_id)->where('bet_result',null)->orderBy('id','desc')->get();
         
         return redirect()->back()->with(['message'=>'Bet placed successfully','myBets'=>$played_matches]);

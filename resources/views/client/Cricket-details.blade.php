@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>CRICKET247BUZZ</title>
+  <title>Silver</title>
   <!--<base href="/">-->
   <base href=".">
   <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
@@ -758,8 +758,8 @@
   <style></style>
   <style>
     :root {
-      --primary: #2d3387;
-      --secondary: #092844;
+     --primary:#08c;
+      --secondary: #2d3e50;
       --third: #2b329bE6;
       --forth: #092844D9;
       --fifth: #fff;
@@ -1384,22 +1384,22 @@
         <div class="topbar">
           <div class="container-fluid">
             <div class="row">
-              <div class="col-md-4 col-4 d-flex"><a class="homelogo" href="{{route('client-home')}}"><i class="fa fa-home"></i><img _ngcontent-uhn-c72="" class="logo-login" src="https://crickekbuz.art/public/assets/logo2.png"><!----></a></div>
+              <div class="col-md-4 col-4 d-flex"><a class="homelogo" href="{{route('client-home')}}"><i class="fa fa-home"></i><img _ngcontent-uhn-c72="" class="logo-login" src="https://newsilver.art/public/assets/logo2.png"><!----></a></div>
               <div class="col-md-8 col-8">
                 <ul class="top-right">
                   <li class="searchbar"><!----><input id="SearchInput" typeaheadoptionfield="name" placeholder="All Events" autocomplete="off" class="form-control ng-untouched ng-pristine ng-valid" style="display: none;" aria-expanded="false" aria-autocomplete="list"><!----><a href="javascript:void(0)"><i class="fa fa-search-plus"></i></a></li>
-                  <li class="rules-apk"><a routerlink="/rules" href="https://crickekbuz.art/assets/rules"><b _ngcontent-uhn-c72="">Rules</b></a></li>
+                  <li class="rules-apk"><a routerlink="/rules" href="https://newsilver.art/assets/rules"><b _ngcontent-uhn-c72="">Rules</b></a></li>
                   <li class="bespan"><span><sub _ngcontent-uhn-c72="">Balance:</sub><i class="fa fa-landmark"></i><b _ngcontent-uhn-c72="">@if(Auth::guard('client')->check()) {{Auth::guard('client')->user()->balance}} @endif </b></span><span>Exp<sub _ngcontent-uhn-c72="">osure</sub>: <b _ngcontent-uhn-c72="">0</b></span></li>
                   <li class="dropdown topright_drop">
-                    <div class="btn-group"><a href="https://crickekbuz.art/assets/#" data-toggle="dropdown" class="dropdown-toggle">@if(Auth::guard('client')->check()) {{Auth::guard('client')->user()->username}} @endif <i class="fa fa-caret-down"></i><i class="fa fa-chevron-down"></i></a>
+                    <div class="btn-group"><a href="https://newsilver.art/assets/#" data-toggle="dropdown" class="dropdown-toggle">@if(Auth::guard('client')->check()) {{Auth::guard('client')->user()->username}} @endif <i class="fa fa-caret-down"></i><i class="fa fa-chevron-down"></i></a>
                       <div class="dropdown-menu dropdown-menu-right">
                         <a routerlink="/reports/account-statement" class="dropdown-item" href="{{route('account_settlement')}}"> account statement </a>
                         <a routerlink="/reports/profit-loss" class="dropdown-item" href="{{route('profit_loss_report')}}"> profit loss report </a>
                         <a routerlink="/reports/bet-history" class="dropdown-item" href="{{route('bet_history_client')}}"> bet history </a>
                         <!--<a routerlink="/reports/unsettled-bet" class="dropdown-item" href="{{route('account_settlement')}}"> unsettled bet </a>-->
-                        <!--<a routerlink="/set-button-value" class="dropdown-item" href="https://crickekbuz.art/assets/set-button-value"> set button values </a>-->
+                        <!--<a routerlink="/set-button-value" class="dropdown-item" href="https://newsilver.art/assets/set-button-value"> set button values </a>-->
                         <a routerlink="/change-password" class="dropdown-item" href="{{route('change_pass')}}"> change password </a>
-                        <!--<a routerlink="/rules" class="dropdown-item d-sm-none d-block" href="https://crickekbuz.art/assets/rules"> rules </a>-->
+                        <!--<a routerlink="/rules" class="dropdown-item d-sm-none d-block" href="https://newsilver.art/assets/rules"> rules </a>-->
                         <div class="dropdown-divider"></div>
                         <a href="{{route('client-logout')}}" class="dropdown-item"> SignOut </a>
                       </div>
@@ -1532,7 +1532,7 @@
                       </div>
                       <div id="liveTvMatch"> </div>
                     <?php } ?>
-                    <h2 _ngcontent-uhn-c91="" class="event-title"><span _ngcontent-uhn-c91=""> {{$game_single['game_title']}} </span><!----><!----><span _ngcontent-uhn-c91="">{{$istTime}}
+                    <h2 _ngcontent-uhn-c91="" class="event-title"><span _ngcontent-uhn-c91=""> {{$game_single['game_title']}} </span><!----><!----><span _ngcontent-uhn-c91="">{{$game_single['datetimeGMT']}}
                       </span><!----><!----></h2>
 
                     <div id="scoreCard" class="multi-collapse">
@@ -2127,7 +2127,7 @@
                           <div class="stakes" style="width: 100%;">
                             <div class="btn-group">
                               <button type="button" class="add_bet">100</button>
-                              <button type="button" class="add_bet">500</button><button type="button" class="add_bet">1000</button><button type="button" class="add_bet">5000</button><button type="button" class="add_bet">10000</button><button type="button" class="add_bet">25000</button><!---->
+                              <button type="button" class="add_bet">500</button><button type="button" class="add_bet">1000</button><button type="button" class="add_bet">5000</button><button type="button" class="add_bet">10000</button><button type="button" class="add_bet">25000</button><button type="button" class="add_bet">50000</button><button type="button" class="add_bet">100000</button><button type="button" class="add_bet">500000</button><!---->
                             </div>
                           </div><!---->
                           <div class="row align-items-center">
@@ -2214,7 +2214,7 @@
                         <div class="stakes" style="width: 100%;">
                           <div class="btn-group">
                             <button type="button" class="add_bet">100</button>
-                            <button type="button" class="add_bet">500</button><button type="button" class="add_bet">1000</button><button type="button" class="add_bet">5000</button><button type="button" class="add_bet">10000</button><button type="button" class="add_bet">25000</button>
+                            <button type="button" class="add_bet">500</button><button type="button" class="add_bet">1000</button><button type="button" class="add_bet">5000</button><button type="button" class="add_bet">10000</button><button type="button" class="add_bet">25000</button><button type="button" class="add_bet">50000</button><button type="button" class="add_bet">100000</button><button type="button" class="add_bet">500000</button>
                           </div>
                         </div>
                         <div class="row align-items-center">
@@ -2233,7 +2233,7 @@
         </div>
       </main><app-footer _ngcontent-uhn-c75="" _nghost-uhn-c74="">
         <footer _ngcontent-uhn-c74="" id="footer">
-          <p _ngcontent-uhn-c74="" class="copyrgt text-center"> Please Gamble Responsible । <a _ngcontent-uhn-c74="" target="_blank" href="https://crickekbuz.art/assets/#/terms">Terms &amp; Conditions</a> । <a _ngcontent-uhn-c74="" target="_blank" href="https://crickekbuz.art/assets/#/license">License</a> । <a _ngcontent-uhn-c74="" target="_blank" href="https://crickekbuz.art/assets/#/privacy">Privacy Policy</a> । <a _ngcontent-uhn-c74="" data-toggle="modal" data-target="#rulesModal">Rules &amp; Regulations</a> ©
+          <p _ngcontent-uhn-c74="" class="copyrgt text-center"> Please Gamble Responsible । <a _ngcontent-uhn-c74="" target="_blank" href="https://newsilver.art/assets/#/terms">Terms &amp; Conditions</a> । <a _ngcontent-uhn-c74="" target="_blank" href="https://newsilver.art/assets/#/license">License</a> । <a _ngcontent-uhn-c74="" target="_blank" href="https://newsilver.art/assets/#/privacy">Privacy Policy</a> । <a _ngcontent-uhn-c74="" data-toggle="modal" data-target="#rulesModal">Rules &amp; Regulations</a> ©
             Copyright 2020. All Rights Reserved. </p>
         </footer>
       </app-footer>
@@ -9800,6 +9800,7 @@
       </template></section>
   </div>
   <script>
+  $(".bets-section").hide();
     @if(empty(Session::get('myBets')))
     $(".show_bet").hide();
     @endif
@@ -9942,12 +9943,12 @@ $(document).ready(function() {
     //  $(".my-bet-table").append(nodata);
     //  @endif
   </script>
-  <!-- <script>
+   <script>
     $(".remove_bet").click(function() {
       $(".show_bet").hide();
     });
   </script>
-  <script>
+ <!-- <script>
     var cricketId = @json($game_single['id']);
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -10060,6 +10061,7 @@ $(document).ready(function() {
         liveTvMatchDiv.style.display = 'none'; // Hide the div
       }
     });
+    
   </script>
 </body>
 

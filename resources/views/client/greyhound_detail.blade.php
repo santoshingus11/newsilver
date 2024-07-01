@@ -14,8 +14,10 @@
   }
 
   iframe {
-    width: 100% !important;;
-    height: 100% !important;;
+    width: 100% !important;
+    ;
+    height: 100% !important;
+    ;
     border: none;
   }
 </style>
@@ -48,17 +50,17 @@
                           </thead><!---->
                           <tbody class="my-bet-table">
                             @if(!empty(Session::get('myBets')))
-                                @foreach(Session::get('myBets') as $m)
-                                <tr>
-                                    <td class="text-left">{{$m->team_name}};
-                                    <td class="text-left">{{$m->bet_odds}};
-                                    <td colspan="3" class="text-left">{{$m->bet_stake}};
-                                </tr>
-                                 @endforeach
+                            @foreach(Session::get('myBets') as $m)
+                            <tr>
+                              <td class="text-left">{{$m->team_name}};
+                              <td class="text-left">{{$m->bet_odds}};
+                              <td colspan="3" class="text-left">{{$m->bet_stake}};
+                            </tr>
+                            @endforeach
                             @else
-                                 <tr>
-                                   <td colspan="3" class="text-left text-center">No data Found</td>
-                                </tr>
+                            <tr>
+                              <td colspan="3" class="text-left text-center">No data Found</td>
+                            </tr>
                             @endif
                           </tbody><!---->
                         </table>
@@ -69,11 +71,11 @@
             </tabset><!---->
           </div>
           <div class="col-md-8">
-          <?php if ($_SERVER['HTTP_USER_AGENT'] && strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) { ?>
-            <div class="betting-table lay-bt" style="position: relative;">
-                  <h2 _ngcontent-uhn-c87="" class="mrkname" id="liveMatchLink"> Live Match </h2>
-                </div>
-                <div id="liveTvMatch"></div>
+            <?php if ($_SERVER['HTTP_USER_AGENT'] && strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) { ?>
+              <div class="betting-table lay-bt" style="position: relative;">
+                <h2 _ngcontent-uhn-c87="" class="mrkname" id="liveMatchLink"> Live Match </h2>
+              </div>
+              <div id="liveTvMatch"></div>
             <?php } ?>
             <h2 class="event-title">{{$game_single['game_title']}}</h2>
             <div id="scoreCard" class="multi-collapse">
@@ -90,7 +92,7 @@
                       <div class="Lay_oddsbox bhav_box">Lay</div>
                     </div>
                   </div>
-                  
+
                   @foreach($response['match_odds'] as $r)
                   <div class="randerScore mainScore">
                     <div class="odds_rows">
@@ -107,89 +109,89 @@
                         <div class="back_oddsbox bhav_box"><strong class="odds ng-binding bet_text" data-back-lay="back" data-match-id="{{$r['id']}}" data-team-name="{{$r['team_name']}}">{{$r['back_value']}}</strong>
                           <div class="size"><span class="ng-binding"> 39.27 </span></div>
                         </div>
-                         @else
-                         <div style="background:white !important;" class="back_oddsbox bhav_box"></div>
-                        </div>
-                         @endif
-                         
-                        @if($r['lay_status']==1)
-                        <div class="Lay_oddsbox bhav_box"><strong class="odds ng-binding bet_text" data-back-lay="lay" data-match-id="{{$r['id']}}" data-team-name="{{$r['team_name']}}">{{$r['lay_value']}}</strong>
-                          <div class="size"><span class="ng-binding"> 45.7 </span></div>
-                        </div><!----><!---->
                         @else
-                        <div style="background:white !important;" class="Lay_oddsbox bhav_box">
-                        </div><!----><!---->
-                        @endif
+                        <div style="background:white !important;" class="back_oddsbox bhav_box"></div>
                       </div>
-                    </div><!---->
-                  </div>
-                  @endforeach
-                  
-                </div><!----><!----><!----><!---->
-              </div>
-              <div><!----><!----><!----><!----></div><!----><!---->
+                      @endif
+
+                      @if($r['lay_status']==1)
+                      <div class="Lay_oddsbox bhav_box"><strong class="odds ng-binding bet_text" data-back-lay="lay" data-match-id="{{$r['id']}}" data-team-name="{{$r['team_name']}}">{{$r['lay_value']}}</strong>
+                        <div class="size"><span class="ng-binding"> 45.7 </span></div>
+                      </div><!----><!---->
+                      @else
+                      <div style="background:white !important;" class="Lay_oddsbox bhav_box">
+                      </div><!----><!---->
+                      @endif
+                    </div>
+                  </div><!---->
+                </div>
+                @endforeach
+
+              </div><!----><!----><!----><!---->
             </div>
-            <div class="col-md-4">
-            
+            <div><!----><!----><!----><!----></div><!----><!---->
+          </div>
+          <div class="col-md-4">
+
             <?php if ($_SERVER['HTTP_USER_AGENT'] && strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) { ?>
 
-<!-- // If the user agent indicates a mobile device, use mobile styles -->
-<div id="rightBarDiv" class="bets_box-main " style="display:contents;">
-<?php   } else { ?>
+              <!-- // If the user agent indicates a mobile device, use mobile styles -->
+              <div id="rightBarDiv" class="bets_box-main " style="display:contents;">
+              <?php   } else { ?>
 
-  <!-- // Otherwise, use desktop styles -->
-  <div id="rightBarDiv" class="bets_box-main ">
-  <div class="betting-table lay-bt" style="position: relative;">
-    <h2 _ngcontent-uhn-c87="" class="mrkname" id="liveMatchLink"> Live Match </h2>
-  </div>
-  <div id="liveTvMatch"></div>
-  <?php  } ?>
-
-
-              
-               @if(Session::has('message'))
-                  <p class="alert alert-success"><strong>{{Session::get('message')}}</strong></p>
-              @endif
-              @if(Session::has('error'))
-                  <p class="alert alert-danger"><strong>{{Session::get('error')}}</strong></p>
-              @endif
-              
-              <!--<div id="rightBarDiv" class="bets_box-main"> ---->
-              <app-bet-slip _nghost-xyn-c87="">
-                <form action="{{route('greyhound-bet-place')}}" method="POST">
-                @csrf
+                <!-- // Otherwise, use desktop styles -->
+                <div id="rightBarDiv" class="bets_box-main ">
                   <div class="betting-table lay-bt" style="position: relative;">
-                     <h2 class="mrkname d-flex justify-content-between align-items-center">
-                          place bet
-                          <span class="text-right remove_bet">X</span>
-                        </h2>
-                    <div class="back">
-                      <div class="row align-items-center">
-                        <div class="col col-md-4"> (Bet for) </div>
-                        <div class="col"> Odds </div>
-                        <div class="col"> Stake </div>
-                        <div class="col"> Profit </div>
-                      </div><!---->
-                      <div class="row border-bottom align-items-center">
-                        <div class="col col-md-4 text-left bat_team_place"><a><i class="fa fa-close text-danger"></i></a> Grasshoppers Zurich </div>
-                        <div class="col"><input type="text" name="bet_odds" id="bet_input" readonly="true" min="1.01" max="999.99" class="form-control ng-untouched ng-pristine ng-valid"><a href="javascript:void(0)" class="arrow-up"><i class="fa fa-angle-up"></i></a><a href="javascript:void(0)" class="arrow-down"><i class="fa fa-angle-down"></i></a></div><!----><!---->
-                        <div class="col"><input type="number"  name="bet_stake" id="add_input"  placeholder="Amount" class="form-control ng-untouched ng-pristine ng-valid"></div>
-                        <div class="col profit_div"> 0 </div>
-                        <input type="hidden" name="back_lay" id="back_lay">
-                        <input type="hidden" name="match_id" id="match_id">
-                        <input type="hidden" name="bet_profit" id="bet_profit">
-                        <input type="hidden" name="bet_team_name" id="bet_team_name">
-                      </div><!----><!----><!---->
-                      <div class="stakes" style="width: 100%;">
-                        <div class="btn-group"><button type="button" class="add_bet">100</button><button type="button" class="add_bet">500</button><button type="button" class="add_bet">1000</button><button type="button" class="add_bet">5000</button><button type="button" class="add_bet">10000</button><button type="button" class="add_bet">25000</button><!----></div>
-                      </div><!---->
-                      <div class="row align-items-center">
-                        <div class="col"><button class="btn cancel-btn" id="reset_btn">reset</button></div>
-                        <div class="col"><button class="btn betplace-btn" disabled="">submit</button></div><!---->
-                      </div><!---->
-                    </div><!----><!---->
+                    <h2 _ngcontent-uhn-c87="" class="mrkname" id="liveMatchLink"> Live Match </h2>
                   </div>
-                </form>
+                  <div id="liveTvMatch"></div>
+                <?php  } ?>
+
+
+
+                @if(Session::has('message'))
+                <p class="alert alert-success"><strong>{{Session::get('message')}}</strong></p>
+                @endif
+                @if(Session::has('error'))
+                <p class="alert alert-danger"><strong>{{Session::get('error')}}</strong></p>
+                @endif
+
+                <!--<div id="rightBarDiv" class="bets_box-main"> ---->
+                <app-bet-slip _nghost-xyn-c87="" class="show_bet">
+                  <form action="{{route('greyhound-bet-place')}}" method="POST">
+                    @csrf
+                    <div class="betting-table lay-bt" style="position: relative;">
+                      <h2 class="mrkname d-flex justify-content-between align-items-center">
+                        place bet
+                        <span class="text-right remove_bet">X</span>
+                      </h2>
+                      <div class="back">
+                        <div class="row align-items-center">
+                          <div class="col col-md-4"> (Bet for) </div>
+                          <div class="col"> Odds </div>
+                          <div class="col"> Stake </div>
+                          <div class="col"> Profit </div>
+                        </div><!---->
+                        <div class="row border-bottom align-items-center">
+                          <div class="col col-md-4 text-left bat_team_place"><a><i class="fa fa-close text-danger"></i></a> Grasshoppers Zurich </div>
+                          <div class="col"><input type="text" name="bet_odds" id="bet_input" readonly="true" min="1.01" max="999.99" class="form-control ng-untouched ng-pristine ng-valid"><a href="javascript:void(0)" class="arrow-up"><i class="fa fa-angle-up"></i></a><a href="javascript:void(0)" class="arrow-down"><i class="fa fa-angle-down"></i></a></div><!----><!---->
+                          <div class="col"><input type="number" name="bet_stake" id="add_input" placeholder="Amount" class="form-control ng-untouched ng-pristine ng-valid"></div>
+                          <div class="col profit_div"> 0 </div>
+                          <input type="hidden" name="back_lay" id="back_lay">
+                          <input type="hidden" name="match_id" id="match_id">
+                          <input type="hidden" name="bet_profit" id="bet_profit">
+                          <input type="hidden" name="bet_team_name" id="bet_team_name">
+                        </div><!----><!----><!---->
+                        <div class="stakes" style="width: 100%;">
+                          <div class="btn-group"><button type="button" class="add_bet">100</button><button type="button" class="add_bet">500</button><button type="button" class="add_bet">1000</button><button type="button" class="add_bet">5000</button><button type="button" class="add_bet">10000</button><button type="button" class="add_bet">25000</button><!----></div>
+                        </div><!---->
+                        <div class="row align-items-center">
+                          <div class="col"><button class="btn cancel-btn" id="reset_btn">reset</button></div>
+                          <div class="col"><button class="btn betplace-btn" disabled="">submit</button></div><!---->
+                        </div><!---->
+                      </div><!----><!---->
+                    </div>
+                  </form>
                 </app-bet-slip><app-my-bets _nghost-xyn-c88="">
                   <div class="bets-section">
                     <h2 class="ds-none-mobile">My Bet</h2>
@@ -203,26 +205,26 @@
                           </tr>
                         </thead><!---->
                         <tbody class="my-bet-table">
-                                 @if(!empty(Session::get('myBets')))
-                              @foreach(Session::get('myBets') as $m)
-                              <tr>
-                                  <td class="text-left">{{$m->team_name}};
-                                  <td class="text-left">{{$m->bet_odds}};
-                                  <td colspan="3" class="text-left">{{$m->bet_stake}};
-                              </tr>
-                               @endforeach
-                              @else
-                               <tr>
-                                 <td colspan="3" class="text-left text-center">No data Found</td>
-                              </tr>
-                               @endif
+                          @if(!empty(Session::get('myBets')))
+                          @foreach(Session::get('myBets') as $m)
+                          <tr>
+                            <td class="text-left">{{$m->team_name}};
+                            <td class="text-left">{{$m->bet_odds}};
+                            <td colspan="3" class="text-left">{{$m->bet_stake}};
+                          </tr>
+                          @endforeach
+                          @else
+                          <tr>
+                            <td colspan="3" class="text-left text-center">No data Found</td>
+                          </tr>
+                          @endif
                         </tbody><!---->
                       </table>
                     </div>
                   </div>
                 </app-my-bets>
-            </div>
-            </div>
+                </div>
+              </div>
           </div>
         </div><!---->
       </div>
@@ -265,10 +267,10 @@
   </app-sport-detail><!----></div>
 @endsection
 @section('script')
-  
+
 <script>
-$(function() {
-  @if(empty(Session::get('myBets')))
+  $(function() {
+    @if(empty(Session::get('myBets')))
     $(".show_bet").hide();
     @endif
     $(".bet_text").click(function() {
@@ -276,27 +278,27 @@ $(function() {
 
       // $elem = $(this).parent("div");
       $elem = $(this).parents('.mainScore').first();
-console.log($elem);
+      console.log($elem);
       // $elem.parents('.event-names').length // id = $div.attr("id");
 
       text = $elem.find(".team_name").text();
-      
+
       $('#back_lay').val($(this).data("back-lay"));
       $('#match_id').val($(this).data("match-id"));
       $('#bet_team_name').val($(this).data("team-name"));
-      
-      
+
+
       console.log($(this).data("match-id"));
 
       // alert( text  );
       $('.bat_team_place').text(text);
       $("#bet_input").val($(this).text());
     });
-});
-  </script>
+  });
+</script>
 
 
-  <script>
+<script>
   $(function() {
     $(".add_bet").click(function() {
       // alert($("#bet_input").val());
@@ -304,11 +306,11 @@ console.log($elem);
       var amnt = $(this).text();
       var odds = $("#bet_input").val();
       var profit = amnt * odds;
-console.log(profit);
+      console.log(profit);
       $(".profit_div").text(profit);
       $("#add_input").val($(this).text());
       $("#bet_profit").val(profit);
-      $('.betplace-btn').prop("disabled", false); 
+      $('.betplace-btn').prop("disabled", false);
     });
     $("#reset_btn").click(function() {
       $("#add_input").val("");
@@ -316,26 +318,26 @@ console.log(profit);
       $(".profit_div").text("");
     });
   });
-  </script>
-  
-  <script>
+</script>
+
+<script>
   $(function() {
-        setTimeout(function () {
-            if ($(".alert").is(":visible")){
-                 //you may add animate.css class for fancy fadeout
-                $(".alert").fadeOut("slow");
-            }
-        }, 2000);
+    setTimeout(function() {
+      if ($(".alert").is(":visible")) {
+        //you may add animate.css class for fancy fadeout
+        $(".alert").fadeOut("slow");
+      }
+    }, 2000);
   });
-  </script>
-    <script>
-    $(".remove_bet").click(function() {
-      $(".show_bet").hide();
-    });
-  </script>
- <script>
+</script>
+<script>
+  $(".remove_bet").click(function() {
+    $(".show_bet").hide();
+  });
+</script>
+<script>
   document.getElementById('liveMatchLink').addEventListener('click', function() {
- 
+
     var liveTvMatchDiv = document.getElementById('liveTvMatch');
     var channel_id = $("#channel_id").val();
 

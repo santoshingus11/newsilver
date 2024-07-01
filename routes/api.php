@@ -20,4 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/commands',[CommandController::class,'index']);
+Route::get('/all_games_bet/{game}/{matchid}',[CommandController::class,'all_games_bet']);
 Route::get('/profit_loss/{id}/{game_id}/{win_loss}',[CommandController::class,'profit_loss']);

@@ -1532,7 +1532,7 @@
             $('#loginexampleModal .btn-primary').click(function() {
                 // Get form data
                 var formData = $('#loginForm').serialize();
-    
+   
                 // Submit form data to the 'login_submit' route using AJAX
                 $.ajax({
                     type: 'POST',

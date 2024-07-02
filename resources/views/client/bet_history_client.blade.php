@@ -75,7 +75,7 @@
                                 <th class="text-center">Bet ID</th>
                                 <th class="text-center">Event Name</th>
                                 <th class="text-center">Event Type</th>
-                                <th class="text-center">Bet stake</th>
+                                
                                 <th class="text-center">Win/Loss</th>
                                 <th class="text-center">Placed Time</th>
                                 <th class="text-center">Settled Time</th>
@@ -88,7 +88,7 @@
                                 <td class="text-center">{{$bet->id}}</td>
                                 <td class="text-center">{{$bet->team_name}}</td>
                                 <td class="text-center">CRICKET</td>
-                                <td class="text-center">{{$bet->bet_stake}}</td>
+                                
                                 <!--@if($bet->bet_result != NULL)-->
                                 <!--<td class="text-center green">{{$bet->bet_stake}}</td>-->
                                 <!--@else-->
@@ -116,7 +116,7 @@
                             <th class="text-center">Bet ID</th>
                                 <th class="text-center">Event Name</th>
                                 <th class="text-center">Event Type</th>
-                                <th class="text-center">Bet stake</th>
+                                
                                 <th class="text-center">Win/Loss</th>
                                 <th class="text-center">Placed Time</th>
                                 <th class="text-center">Settled Time</th>
@@ -129,7 +129,7 @@
                                 <td class="text-center">{{$bet->id}}</td>
                                 <td class="text-center">{{$bet->team_name}}</td>
                                 <td class="text-center">Football</td>
-                                <td class="text-center">{{$bet->bet_stake}}</td>
+                                
                                 <!--@if($bet->bet_result != NULL)-->
                                 <!--<td class="text-center green">{{$bet->bet_stake}}</td>-->
                                 <!--@else-->
@@ -158,7 +158,7 @@
                             <th class="text-center">Bet ID</th>
                                 <th class="text-center">Event Name</th>
                                 <th class="text-center">Event Type</th>
-                                <th class="text-center">Bet stake</th>
+                                
                                 <th class="text-center">Win/Loss</th>
                                 <th class="text-center">Placed Time</th>
                                 <th class="text-center">Settled Time</th>
@@ -171,7 +171,7 @@
                                 <td class="text-center">{{$bet->id}}</td>
                                 <td class="text-center">{{$bet->team_name}}</td>
                                 <td class="text-center">Tennis</td>
-                                <td class="text-center">{{$bet->bet_stake}}</td>
+                                
                                 <!--@if($bet->bet_result != NULL)-->
                                 <!--<td class="text-center green">{{$bet->bet_stake}}</td>-->
                                 <!--@else-->
@@ -199,7 +199,7 @@
                             <th class="text-center">Bet ID</th>
                                 <th class="text-center">Event Name</th>
                                 <th class="text-center">Event Type</th>
-                                <th class="text-center">Bet stake</th>
+                                
                                 <th class="text-center">Win/Loss</th>
                                 <th class="text-center">Placed Time</th>
                                 <th class="text-center">Settled Time</th>
@@ -212,7 +212,7 @@
                                 <td class="text-center">{{$bet->id}}</td>
                                 <td class="text-center">{{$bet->team_name}}</td>
                                 <td class="text-center">Horse</td>
-                                <td class="text-center">{{$bet->bet_stake}}</td>
+                                
                                 <!--@if($bet->bet_result != NULL)-->
                                 <!--<td class="text-center green">{{$bet->bet_stake}}</td>-->
                                 <!--@else-->
@@ -240,7 +240,7 @@
                             <th class="text-center">Bet ID</th>
                                 <th class="text-center">Event Name</th>
                                 <th class="text-center">Event Type</th>
-                                <th class="text-center">Bet stake</th>
+                                
                                 <th class="text-center">Win/Loss</th>
                                 <th class="text-center">Placed Time</th>
                                 <th class="text-center">Settled Time</th>
@@ -253,7 +253,7 @@
                                 <td class="text-center">{{$bet->id}}</td>
                                 <td class="text-center">{{$bet->team_name}}</td>
                                 <td class="text-center">Greyhound</td>
-                                <td class="text-center">{{$bet->bet_stake}}</td>
+                                
                                 <!--@if($bet->bet_result != NULL)-->
                                 <!--<td class="text-center green">{{$bet->bet_stake}}</td>-->
                                 <!--@else-->

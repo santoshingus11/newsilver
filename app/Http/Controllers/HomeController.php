@@ -529,7 +529,8 @@ class HomeController extends Controller
     
     public function account_settlement() {
           $bankingHistories = BankingHistory::where('user_id',Auth::guard('client')->user()->id)->orderBy('banking_history_id','desc')->get();
-        return view('client.account_settlement',compact('bankingHistories'));
+
+          return view('client.account_settlement',compact('bankingHistories'));
     }
     
     function change_pass() {

@@ -140,7 +140,7 @@ Route::middleware('client.login.check')->group(function () {
     Route::get('queen_result', [HomeController::class, 'queen_result'])->name('queen-result');
     Route::get('andarbahar_result', [HomeController::class, 'andarbahar_result'])->name('andarbahar-result');
     Route::get('home',[HomeController::class,'home'])->name('home');
-    Route::get('mybets',[HomeController::class,'mybets'])->name('my-bets');
+    // Route::get('mybets',[HomeController::class,'mybets'])->name('my-bets');
     Route::get('secureauth',[HomeController::class,'secureauth'])->name('secureauth');
     Route::get('message',[HomeController::class,'message'])->name('message');
     Route::get('profit-loss',[HomeController::class,'loss_profit'])->name('profit_loss');
@@ -300,6 +300,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('agent-listing2',[AdminController::class,'demo_1'])->name('agent-listing2');
     Route::any('agent-listing',[AdminController::class,'agent_listing'])->name('agent-listing');
     Route::get('agent-listing-demoag5/{id}',[AdminController::class,'demo_4'])->name('agent-listing-demoag5');
+    Route::get('agent-listing-demoag55/{id}',[AdminController::class,'demo_44'])->name('agent-listing-demoag55');
     Route::get('create-new-user',[AdminController::class,'new_user'])->name('create-new-user');
     Route::get('race20',[AdminController::class,'race20'])->name('admin-race-20');
     Route::get('new-agent',[AdminController::class,'new_agent'])->name('new-agent');

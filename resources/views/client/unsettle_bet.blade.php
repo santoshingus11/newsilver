@@ -6,7 +6,7 @@
 
 <div class="col-md-10 pxxs-0"><router-outlet></router-outlet><app-unsettled-bet>
         <div class="wrapper-inner user_screen">
-            <h2 class="user-title">unsetteled bet</h2>
+            <h2 class="user-title">My Bet</h2>
             <div class="border border-light">
                 <div class="filter m-2">
                     <div class="form-row align-items-center">
@@ -19,26 +19,34 @@
                     <table id="btDataTable" class="table table-bordered btDataTable table-striped table-bordered" style="width: 100%;">
                         <thead>
                             <tr>
+                                <th class="text-center">ID</th>
                                 <th class="text-center">Event Name</th>
-                                <th class="text-center">Selection</th>
-                                <th class="text-center">Event Type</th>
-                                <th class="text-center">Market Type</th>
-                                <th class="text-center">Bet Type</th>
-                                <th class="text-center">Odds</th>
                                 <th class="text-center">Stake</th>
-                                <th class="text-center">Placed Time</th>
+                                <th class="text-center">Profit</th>
                                 <th class="text-center">Match date</th>
                             </tr>
                         </thead>
-                        <tbody><!----></tbody><!---->
                         <tbody>
+                        @foreach($sorted_merged_played_matches_array as $b)
+                            <tr>
+                                <td class="text-center">{{$b->id}}</td>
+                                <td class="text-center">{{$b->team_name}}</td>
+                                <td class="text-center">{{$b->bet_stake}}</td>
+                                <td class="text-center">{{$b->bet_profit}}</td>
+                                <td class="text-center">{{$b->created_at}}</td>
+                            </tr><!---->
+                            @endforeach
+                        </tbody>
+                        <tbody>
+                            
                             <td colspan="11" class="noData"> No Data Found</td>
-                        </tbody><!----><!---->
+                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
-    </app-unsettled-bet><!----></div>
+    </app-unsettled-bet>
+</div>
 @endsection
 @section('script')
 <script>

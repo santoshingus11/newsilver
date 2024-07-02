@@ -14,8 +14,9 @@
                         <li class="dropdown topright_drop">
                              <div class="btn-group"><a href="javascript:void(0)" data-toggle="dropdown" class="dropdown-toggle">@if(Auth::guard('client')->check()) {{Auth::guard('client')->user()->username}} @endif <i class="fa fa-caret-down"></i><i class="fa fa-chevron-down"></i></a>
                                 <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="{{route('my-bets')}}"> My bets </a>
                                     <a class="dropdown-item" href="{{route('account_settlement')}}"> account statement </a>
-                                    <a class="dropdown-item" href="{{route('profit_loss_report')}}"> profit loss report </a>
+                                    <!-- <a class="dropdown-item" href="{{route('profit_loss_report')}}"> profit loss report </a> -->
                                     <a class="dropdown-item" href="{{route('bet_history_client')}}"> bet history </a>
                                     <!--<a class="dropdown-item" href="{{route('unsettle_bet')}}"> unsettled bet </a>-->
                                     <!--<a class="dropdown-item" href="{{route('setbutton')}}"> set button values </a>-->

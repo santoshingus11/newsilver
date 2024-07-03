@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -78,7 +77,7 @@
                       </tbody>
                     </table>
 
-                
+
                   </div>
                 </div>
                 @include('layouts.allpagination')
@@ -120,7 +119,7 @@
               <input type="number" name="amount" value="" class="form-control" id="TransferAmount" placeholder="Transfer Amount" require="required">
             </div>
             <div class="mb-3 TransferAmount">
-            <label for="TransferAmount" class="form-label">Note</label>
+              <label for="TransferAmount" class="form-label">Note</label>
               <textarea class="form-control" name="note" id="exampleFormControlTextarea1" placeholder="Agent Notes" rows="3"></textarea>
             </div>
 

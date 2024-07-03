@@ -118,7 +118,7 @@
                       @endphp
                    
                     <div class="col-md-4 col-lg-5 col-6 cursor"><a href="{{ route('Cricket-details',$r['id']) }}">
-                        <p> {{$r['game_title']}}<span>&nbsp;/&nbsp;</span><b>{{$istTime}} (IST)</b></p>
+                        <p> {{$r['game_title']}}<span>&nbsp;/&nbsp;</span><b>{{$r['datetimeGMT']}} (IST)</b></p>
                       </a><!----></div>
                    
                     <div class="col-md-1 col-lg-2 col-6 px-lg-0">

@@ -59,7 +59,11 @@ $available_credit=QueryHelper::total_availablecredit(Auth::guard('agent')->user(
             <ul class="d-flex justify-content-between Balance_Down">
               <li>Balance Down: <span class="red">{{$total_balancedown ?? '0.00'}}</span></li>
               <li>Balance Up: <span class="green">
-                  <?php if (!empty($total_balanceup)) { ?>
+                  <?php
+
+use App\Helpers\QueryHelper;
+
+ if (!empty($total_balanceup)) { ?>
                     <?php echo $total_balanceup - $total_balancedown ?? "" ?>
                   <?php } ?>
                 </span></li>
@@ -141,6 +145,8 @@ $available_credit=QueryHelper::total_availablecredit(Auth::guard('agent')->user(
 
                         <tr>
                           @foreach($data as $sc)
+                          <?php $total_bets_credit = QueryHelper::total_bets($sc->id); ?>
+
                           <td colspan="" class="">
                             @if(request()->has('id'))
                             <a href="javascript:void(0);" class="eye-view Learn-More-Button">
@@ -195,7 +201,7 @@ $available_credit=QueryHelper::total_availablecredit(Auth::guard('agent')->user(
                           <td colspan="" class=""><a href="javascript:void(0)" class="font-13 eye-view"><i data-feather="eye"></i></a></td>
                           @endif
                           <td colspan="" class="red">0.00</td>
-                          <td colspan="" class="green">0.00</td>
+                          <td colspan="" class="green">{{$total_bets_credit}}</td>
                           <td colspan="" class="">{{$sc->credit_limit}}</td>
                           <td colspan="" class="">{{$sc->balance}}</td>
                           <td colspan="" class="">{{ \Carbon\Carbon::parse($sc->created_at)->format('m/d/Y h:i:s A') }} </td>

@@ -93,7 +93,7 @@
                   <div href="javascript:void(0)" class="row td-body" tabindex="0">
                    
                     <div href="javascript:void(0)" class="col-md-4 col-lg-5 col-6 cursor"><a href="{{route('Football-Details',$r['id'])}}">
-                        <p href="javascript:void(0)"> {{$r['game_title']}}<span href="javascript:void(0)">&nbsp;/&nbsp;</span><b href="javascript:void(0)">{{$istTime}} </b></p>
+                        <p href="javascript:void(0)"> {{$r['game_title']}}<span href="javascript:void(0)">&nbsp;/&nbsp;</span><b href="javascript:void(0)">{{$r['run_date_time']}} </b></p>
                       </a><!----></div>
                     
                     <div href="javascript:void(0)" class="col-md-1 col-lg-2 col-6 px-lg-0">

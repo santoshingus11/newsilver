@@ -198,6 +198,10 @@ class TransferController extends Controller
 
 
       $total_user_balance = Admin::where('id', $request->id)->first();
+      // echo '<pre>';
+      // print_r($total_user_balance);
+      // echo '</pre>';
+      // die();
       if ($type == 'W') {
         $balance = $total_user_balance->balance + $request->withdraw_amount;
         $amount_check = $request->withdraw_amount;
@@ -218,14 +222,14 @@ class TransferController extends Controller
           'ip_address' => $request->ip()
         ]
       );
-
+      if ($type != 'W') {
       BalanceLog::insert([
         'balance_amount' => str_replace('-', '', $amount_check),
         'balance_given_by' => Auth::guard('agent')->user()->id,
         'balance_given_to' => $request->id,
         'note' => $request->note
       ]);
-
+    }
       // DB::enableQueryLog();
       if ($type == 'D') {
         Admin::where('id', $request->id)->update(['balance' => DB::raw('balance + ' . $request->amount)]);

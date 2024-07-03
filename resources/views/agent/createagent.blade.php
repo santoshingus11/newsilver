@@ -115,7 +115,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-3 col-md-6 col-sm-12">
+                        <!-- <div class="col-lg-3 col-md-6 col-sm-12">
                             <div class="Information Information-bg px-4 py-4 w-100">
                                 <div class="card-body">
                                     <h5 class="border-bottom mb-3 pb-1">Credit</h5>
@@ -137,9 +137,9 @@
                                         </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
-                        <div class="col-lg-3 col-md-6 col-sm-12">
+                        <!-- <div class="col-lg-3 col-md-6 col-sm-12">
                             <div class="Information Information-bg px-4 py-4 w-100">
                                 <div class="card-body">
                                     <h5 class="border-bottom mb-3 pb-1">Account Detais</h5>
@@ -166,9 +166,9 @@
                                  
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
-                        <div class="col-lg-3 col-md-6 col-sm-12">
+                        <!-- <div class="col-lg-3 col-md-6 col-sm-12">
                             <div class="Information Information-bg px-4 py-4 w-100">
                                 <div class="card-body">
                                     <h5 class="border-bottom mb-3 pb-1">Notes</h5>
@@ -181,13 +181,13 @@
                                         </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                    
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <div class="Information px-4 py-4 right">
                                 <div class="serch-filter">
                                     <div class="input-group mb-3">
-                                        <label class="Search-By_User Name">
+                                        <!-- <label class="Search-By_User Name">
                                             @if (Auth::guard('agent')->user()->role_id == 3)
                                                 Super-Master password
                                             @elseif(Auth::guard('agent')->user()->role_id == 4)
@@ -195,7 +195,7 @@
                                             @endif
                                         </label>
                                         <input class="form-control event-search mx-2  @error('agent_password') is-invalid @enderror" type="password"
-                                           name="agent_password" placeholder="Password" value="{{ old('agent_password') }}">
+                                           name="agent_password" placeholder="Password" value="{{ old('agent_password') }}"> -->
                                              @error('agent_password')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror

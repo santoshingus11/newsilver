@@ -758,7 +758,7 @@
   <style></style>
   <style>
     :root {
-     --primary:#08c;
+      --primary: #08c;
       --secondary: #2d3e50;
       --third: #2b329bE6;
       --forth: #092844D9;
@@ -1379,7 +1379,7 @@
   @if(Session::has('message'))
   <p class="alert alert-success">{{ Session::get('message') }}</p>
   @endif
-<input type="hidden" id="channel_id" name="channel_id" value="{{$game_single['channel_id']}}">
+  <input type="hidden" id="channel_id" name="channel_id" value="{{$game_single['channel_id']}}">
   <app-root _nghost-uhn-c12="" ng-version="12.1.5"><router-outlet _ngcontent-uhn-c12=""></router-outlet><app-layout _nghost-uhn-c75=""><app-topnav _nghost-uhn-c72="">
         <div class="topbar">
           <div class="container-fluid">
@@ -1512,7 +1512,7 @@
                     <?php
                     if ($_SERVER['HTTP_USER_AGENT'] && strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
                       // If the user agent indicates a mobile device, use mobile styles
-                      echo '<div class="col-md-8 order-2">';
+                      echo '<div class="col-md-8">';
                     } else {
                       // Otherwise, use desktop styles
                       echo '<div class="col-md-8">';
@@ -2052,7 +2052,7 @@
                   <?php
                   if ($_SERVER['HTTP_USER_AGENT'] && strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
                     // If the user agent indicates a mobile device, use mobile styles
-                    echo '<div class="col-md-4 order-1">';
+                    echo '<div class="col-md-4">';
                   } else {
                     // Otherwise, use desktop styles
                     echo '<div class="col-md-4">';
@@ -9800,7 +9800,7 @@
       </template></section>
   </div>
   <script>
-  $(".bets-section").hide();
+    $(".bets-section").hide();
     @if(empty(Session::get('myBets')))
     $(".show_bet").hide();
     @endif
@@ -9859,32 +9859,32 @@
       }
     }, 2000)
   </script>
-<!-- Include jQuery (or you can use plain JavaScript or another library) -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Include jQuery (or you can use plain JavaScript or another library) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<script>
-$(document).ready(function() {
-    function loadCricketDetails() {
+  <script>
+    $(document).ready(function() {
+      function loadCricketDetails() {
         var game_id = "{{ $game_id }}"; // Replace with your actual game ID or pass it dynamically
-        
-        $.ajax({
-            url: '/cricketbzz/cricket-details/' + game_id, // Update with your actual route
-            method: 'GET',
-            success: function(data) {
-                updateCricketDetails(data);
-            },
-            error: function(xhr, status, error) {
-                console.error('Error fetching cricket details:', error);
-            }
-        });
-    }
 
-    function updateCricketDetails(data) {
-      console.log(data);
+        $.ajax({
+          url: '/cricketbzz/cricket-details/' + game_id, // Update with your actual route
+          method: 'GET',
+          success: function(data) {
+            updateCricketDetails(data);
+          },
+          error: function(xhr, status, error) {
+            console.error('Error fetching cricket details:', error);
+          }
+        });
+      }
+
+      function updateCricketDetails(data) {
+        console.log(data);
         // Update the HTML with new data (example below, adapt as needed)
         var matchOddsHtml = '';
         $.each(data.response.match_odds, function(index, r) {
-            matchOddsHtml += `
+          matchOddsHtml += `
                 <div class="randerScore mainScore">
                     <div class="odds_rows">
                         <div class="events_odds">
@@ -9915,15 +9915,15 @@ $(document).ready(function() {
             `;
         });
         $('.matchoddclass').html(matchOddsHtml); // Update with your actual container class
-    }
+      }
 
-    // Load cricket details every 5 seconds
-    // setInterval(loadCricketDetails, 5000);
-    
-    // // Initial load
-    // loadCricketDetails();
-});
-</script>
+      // Load cricket details every 5 seconds
+      // setInterval(loadCricketDetails, 5000);
+
+      // // Initial load
+      // loadCricketDetails();
+    });
+  </script>
 
   <script>
     //  @if(!empty(Session::get('myBets')))
@@ -9943,12 +9943,12 @@ $(document).ready(function() {
     //  $(".my-bet-table").append(nodata);
     //  @endif
   </script>
-   <script>
+  <script>
     $(".remove_bet").click(function() {
       $(".show_bet").hide();
     });
   </script>
- <!-- <script>
+  <!-- <script>
     var cricketId = @json($game_single['id']);
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -10045,8 +10045,8 @@ $(document).ready(function() {
 
       var liveTvMatchDiv = document.getElementById('liveTvMatch');
       var channel_id = $("#channel_id").val();
-    
-    
+
+
       if (liveTvMatchDiv.style.display === 'none' || liveTvMatchDiv.style.display === '') {
         var iframe = document.createElement('iframe');
         iframe.src = channel_id;
@@ -10061,7 +10061,6 @@ $(document).ready(function() {
         liveTvMatchDiv.style.display = 'none'; // Hide the div
       }
     });
-    
   </script>
 </body>
 

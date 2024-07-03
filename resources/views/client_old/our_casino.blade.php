@@ -49,7 +49,7 @@
             <li class="nav-item active"><a href="{{route('client-home')}}" role="tab" class="nav-link" aria-controls="tab0" aria-selected="true" id="tab0-link"><span>IN-PLAY</span><!----><!----></a></li>
             <li class="nav-item"><a href="{{route('client-home')}}" role="tab" class="nav-link" aria-controls="tab1" aria-selected="false" id="tab1-link"><span>SPORTS</span><!----><!----></a></li>
             <li class="nav-item"><a href="{{route('client-home')}}" role="tab" class="nav-link active" aria-controls="tab2" aria-selected="false" id="tab2-link"><span>OUR CASINO</span><!----><!----></a></li>
-            <li class="nav-item"><a href="javascript:void(0);" role="tab" class="nav-link" aria-controls="tab5" aria-selected="false" id="tab5-link"><span>FANTACY</span><!----><!----></a></li><!---->
+            <!-- <li class="nav-item"><a href="javascript:void(0);" role="tab" class="nav-link" aria-controls="tab5" aria-selected="false" id="tab5-link"><span>FANTACY</span></a></li> -->
           </ul>
           <div class="tab-content">
             <tab role="tabpanel" aria-labelledby="tab0-link" id="tab0" class="tab-pane active"></tab><!----><!---->

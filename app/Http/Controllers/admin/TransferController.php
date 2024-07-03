@@ -151,13 +151,26 @@ class TransferController extends Controller
     try {
 
       $ownid = QueryHelper::ownid();
-
-      if ($request->amount >= 0) {
+      $withdrawAmount = $request->input('withdraw_amount');
+      if ($withdrawAmount > 0) {
+          $withdrawAmount = -$withdrawAmount;
+      }
+  
+      // Update the request with the modified value
+      $request->merge(['withdraw_amount' => $withdrawAmount]);
+      // if ($request->amount >= 0) {
+      //   $type = 'D';
+      // } else {
+      //   $type = 'W';
+      // }
+ 
+     
+      if (!empty($request->amount)) {
         $type = 'D';
       } else {
         $type = 'W';
       }
-
+    
       $data = Admin::where('id', Auth::guard('agent')->user()->id)->first();
 
       // if(Hash::check($request->agent_password,$data->password)){   
@@ -165,7 +178,7 @@ class TransferController extends Controller
         $checkadminbalance = Admin::where('id', $ownid)->first();
 
         if ($type == 'D') {
-          if ($request->amount > $checkadminbalance->balance) {
+          if ($request->withdraw_amount > $checkadminbalance->balance) {
             return redirect()->back()->with('success', 'You Do Not Have Sufficient Balance, Because Your Own Balance is : ' . $checkadminbalance->balance);
           }
         }
@@ -186,16 +199,18 @@ class TransferController extends Controller
 
       $total_user_balance = Admin::where('id', $request->id)->first();
       if ($type == 'W') {
-        $balance = $total_user_balance->balance + $request->amount;
+        $balance = $total_user_balance->balance + $request->withdraw_amount;
+        $amount_check = $request->withdraw_amount;
       } else {
         $balance = $total_user_balance->balance + $request->amount;
+        $amount_check = $request->amount;
       }
 
 
       BankingHistory::insert(
         [
           'type' => $type,
-          'amount' => str_replace('-', '', $request->amount),
+          'amount' => str_replace('-', '',$amount_check ),
           'remarks' => $request->note,
           'parent_id' => Auth::guard('agent')->user()->id,
           'user_id' => $request->id,
@@ -205,7 +220,7 @@ class TransferController extends Controller
       );
 
       BalanceLog::insert([
-        'balance_amount' => str_replace('-', '', $request->amount),
+        'balance_amount' => str_replace('-', '', $amount_check),
         'balance_given_by' => Auth::guard('agent')->user()->id,
         'balance_given_to' => $request->id,
         'note' => $request->note
@@ -215,7 +230,7 @@ class TransferController extends Controller
       if ($type == 'D') {
         Admin::where('id', $request->id)->update(['balance' => DB::raw('balance + ' . $request->amount)]);
       } else {
-        Admin::where('id', $request->id)->update(['balance' => DB::raw('balance + ' . $request->amount)]);
+        Admin::where('id', $request->id)->update(['balance' => DB::raw('balance + ' . $request->withdraw_amount)]);
       }
       // dd(DB::getQueryLog());
 

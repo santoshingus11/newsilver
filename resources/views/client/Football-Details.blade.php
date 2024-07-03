@@ -72,11 +72,11 @@
             </tabset><!---->
           </div>
           <div class="col-md-8">
-          <?php if ($_SERVER['HTTP_USER_AGENT'] && strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) { ?>
-            <div class="betting-table lay-bt" style="position: relative;">
-                  <h2 _ngcontent-uhn-c87="" class="mrkname" id="liveMatchLink"> Live Match </h2>
-                </div>
-                <div id="liveTvMatch"></div>
+            <?php if ($_SERVER['HTTP_USER_AGENT'] && strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) { ?>
+              <div class="betting-table lay-bt" style="position: relative;">
+                <h2 _ngcontent-uhn-c87="" class="mrkname" id="liveMatchLink"> Live Match </h2>
+              </div>
+              <div id="liveTvMatch"></div>
             <?php } ?>
             <h2 class="event-title">{{$game_single['game_title']}}</h2>
             <div id="scoreCard" class="multi-collapse">
@@ -329,13 +329,13 @@
 
                 <!-- // Otherwise, use desktop styles -->
                 <div id="rightBarDiv" class="bets_box-main ">
-                <div class="betting-table lay-bt" style="position: relative;">
-                  <h2 _ngcontent-uhn-c87="" class="mrkname" id="liveMatchLink"> Live Match </h2>
-                </div>
-                <div id="liveTvMatch"></div>
+                  <div class="betting-table lay-bt" style="position: relative;">
+                    <h2 _ngcontent-uhn-c87="" class="mrkname" id="liveMatchLink"> Live Match </h2>
+                  </div>
+                  <div id="liveTvMatch"></div>
                 <?php  } ?>
 
-               
+
 
 
 
@@ -363,7 +363,7 @@
                           <div class="col"> Profit </div>
                         </div><!---->
                         <div class="row border-bottom align-items-center">
-                          <div class="col col-md-4 text-left bat_team_place"><a><i class="fa fa-close text-danger"></i></a>  </div>
+                          <div class="col col-md-4 text-left bat_team_place"><a><i class="fa fa-close text-danger"></i></a> </div>
                           <div class="col"><input type="hidden" name="bet_input_stake" id="bet_input_stake"><input type="text" name="bet_odds" id="bet_input" readonly="true" min="1.01" max="999.99" class="form-control ng-untouched ng-pristine ng-valid"><a href="javascript:void(0)" class="arrow-up"><i class="fa fa-angle-up"></i></a><a href="javascript:void(0)" class="arrow-down"><i class="fa fa-angle-down"></i></a></div><!----><!---->
                           <div class="col"><input type="number" name="bet_stake" id="add_input" placeholder="Amount" class="form-control ng-untouched ng-pristine ng-valid"></div>
                           <div class="col profit_div"> 0 </div>
@@ -437,7 +437,7 @@
                       <div class="col"> Profit </div>
                     </div><!---->
                     <div class="row border-bottom align-items-center">
-                      <div class="col col-md-4 text-left"><a><i class="fa fa-close text-danger"></i></a>  </div>
+                      <div class="col col-md-4 text-left"><a><i class="fa fa-close text-danger"></i></a> </div>
                       <div class="col"><input type="number" readonly="true" min="1.01" max="999.99" class="form-control ng-untouched ng-pristine ng-valid"><a href="javascript:void(0)" class="arrow-up"><i class="fa fa-angle-up"></i></a><a href="javascript:void(0)" class="arrow-down"><i class="fa fa-angle-down"></i></a></div><!----><!---->
                       <div class="col"><input type="number" placeholder="Amount" class="form-control ng-untouched ng-pristine ng-valid"></div>
                       <div class="col"> 0 </div>

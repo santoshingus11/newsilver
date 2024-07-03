@@ -34,7 +34,7 @@
       </div>
     </li>
 
-    <li class="nav-item">
+    <!-- <li class="nav-item">
       <a class="nav-link" data-bs-toggle="collapse" href="#RiskManagement" role="button" aria-expanded="false" aria-controls="RiskManagement">
         <span class="link-title">Risk Management</span>
         <i class="link-arrow" data-feather="chevron-down"></i>
@@ -49,7 +49,7 @@
           </li>
         </ul>
       </div>
-    </li>
+    </li> -->
 
     <!-- <li class="nav-item">
       <a class="nav-link" data-bs-toggle="collapse" href="#Reports" role="button" aria-expanded="false" aria-controls="Reports">

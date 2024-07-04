@@ -37,7 +37,7 @@ class LoginSubmitController extends Controller
             // 'exposure_limit' => 'nullable|numeric',
             // 'message' => 'nullable|string',
             // 'agent_password' => 'required|string',
-            // 'level' => 'required|string',
+            'level' => 'required|string',
         ]);
     
         $validator->sometimes('confirm_password', 'different:password', function ($input) {
@@ -78,8 +78,8 @@ class LoginSubmitController extends Controller
         $newAgent->username = $request->username;
         $newAgent->password = bcrypt($request->password);
         $newAgent->status = $request->status;
-        // $newAgent->level_permission = $request->level; //user
-        $newAgent->level_permission = 'User';
+        $newAgent->level_permission = $request->level; //user
+        // $newAgent->level_permission = 'User';
         $newAgent->bet_status = $request->bet_status;
         $newAgent->credit_limit = 0;
         $newAgent->user_rate = 1;

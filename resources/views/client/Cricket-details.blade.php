@@ -1472,7 +1472,7 @@
                         <div _ngcontent-uhn-c35="" class="tab-content">
                           <tab heading="ODDS" role="tabpanel" aria-labelledby="" class="tab-pane active"></tab>
                           <tab role="tabpanel" aria-labelledby="" class="tab-pane">
-                            <!----><app-my-bets _ngcontent-uhn-c91="" _nghost-uhn-c88="">
+                            <!-- <app-my-bets _ngcontent-uhn-c91="" _nghost-uhn-c88="">
                               <div class="bets-section">
                                 <h2 class="ds-none-mobile">My Bet</h2>
                                 <div style="height: 200px !important; overflow: scroll; ">
@@ -1483,7 +1483,7 @@
                                         <td>Odds</td>
                                         <td>Stake</td>
                                       </tr>
-                                    </thead><!---->
+                                    </thead>
 
                                     <tbody class="my-bet-table">
                                       @if(!empty(Session::get('myBets')))
@@ -1500,11 +1500,11 @@
                                       </tr>
                                       @endif
 
-                                    </tbody><!---->
+                                    </tbody>
                                   </table>
                                 </div>
                               </div>
-                            </app-my-bets>
+                            </app-my-bets> -->
                           </tab>
                         </div>
                       </tabset><!---->
@@ -2140,7 +2140,7 @@
                   </app-bet-slip>
 
 
-                  <app-my-bets _nghost-uhn-c88="">
+                  <!-- <app-my-bets _nghost-uhn-c88="">
                     <div class="bets-section">
                       <h2 class="ds-none-mobile">My Bet</h2>
                       <div style="height: 200px !important; overflow: scroll; ">
@@ -2151,7 +2151,7 @@
                               <td>Odds</td>
                               <td>Stake</td>
                             </tr>
-                          </thead><!---->
+                          </thead>
                           <tbody class="my-bet-table">
                             @if(!empty(Session::get('myBets')))
                             @foreach(Session::get('myBets') as $m)
@@ -2166,11 +2166,11 @@
                               <td colspan="3" class="text-left text-center">No data Found</td>
                             </tr>
                             @endif
-                          </tbody><!---->
+                          </tbody>
                         </table>
                       </div>
                     </div>
-                  </app-my-bets>
+                  </app-my-bets> -->
                 </div>
               </div>
 

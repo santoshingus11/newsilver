@@ -137,7 +137,7 @@
                         <div class="col"> Profit </div>
                       </div><!---->
                       <div class="row border-bottom align-items-center">
-                        <div class="col col-md-4 text-left bat_team_place"><a><i class="fa fa-close text-danger"></i></a> Grasshoppers Zurich </div>
+                        <div class="col col-md-4 text-left bat_team_place"><a></a> </div>
                         <div class="col"><input type="hidden" name="bet_input_stake" id="bet_input_stake"><input type="text" name="bet_odds" id="bet_input" readonly="true" min="1.01" max="999.99" class="form-control ng-untouched ng-pristine ng-valid"><a href="javascript:void(0)" class="arrow-up"><i class="fa fa-angle-up"></i></a><a href="javascript:void(0)" class="arrow-down"><i class="fa fa-angle-down"></i></a></div><!----><!---->
                         <div class="col"><input type="number" name="bet_stake" id="add_input" placeholder="Amount" class="form-control ng-untouched ng-pristine ng-valid"></div>
                         <div class="col profit_div"> 0 </div>
@@ -156,7 +156,8 @@
                     </div><!----><!---->
                   </div>
                 </form>
-              </app-bet-slip><app-my-bets _nghost-xyn-c88="">
+              </app-bet-slip>
+              <!-- <app-my-bets _nghost-xyn-c88="">
                 <div class="bets-section">
                   <h2 class="ds-none-mobile">My Bet</h2>
                   <div>
@@ -167,9 +168,9 @@
                           <td>Odds</td>
                           <td>Stake</td>
                         </tr>
-                      </thead><!---->
+                      </thead>
                       <tbody class="my-bet-table">
-                        @if(!empty(Session::get('myBets')))
+                        @if(!empty(Session::get('myBetss')))
                         @foreach(Session::get('myBets') as $m)
                         <tr>
                           <td class="text-left">{{$m->team_name}};
@@ -182,11 +183,11 @@
                           <td colspan="3" class="text-left text-center">No data Found</td>
                         </tr>
                         @endif
-                      </tbody><!---->
+                      </tbody> 
                     </table>
                   </div>
                 </div>
-              </app-my-bets>
+              </app-my-bets> -->
               </div>
             </div>
         </div>

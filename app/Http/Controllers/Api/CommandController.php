@@ -107,7 +107,7 @@ class CommandController extends Controller
 
         try {
 
-        
+
             if ($game_id == 'cricket') {
                 $winnerSelection = CricketPlaceBet::where('match_id', $id)->where('bet_result', null)->where('back_lay', $win_loss)
                     ->join('admins', 'cricket_place_bet.user_id', '=', 'admins.id')
@@ -332,28 +332,28 @@ class CommandController extends Controller
         ];
     }
 
-    public function all_games_bet($game,$match_id)
+    public function all_games_bet($game, $match_id)
     {
         if ($game) {
-           if($game == "cricket"){
-            $response = CricketPlaceBet::where('match_id',$match_id)->orderBy('id','desc')->get();
-           }
-           if($game == "football"){
-            $response = FootballPlaceBet::where('match_id',$match_id)->orderBy('id','desc')->get();
-           }
-           if($game == "tennis"){
-            $response = TennisPlaceBet::where('match_id',$match_id)->orderBy('id','desc')->get();
-           }
-           if($game == "horse"){
-            $response = HorseRacingPlaceBet::where('match_id',$match_id)->orderBy('id','desc')->get();
-           }
-           if($game == "greyhound"){
-            $response = GreyhoundRacingPlaceBet::where('match_id',$match_id)->orderBy('id','desc')->get();
-           }
+            if ($game == "cricket") {
+                $response = CricketPlaceBet::where('match_id', $match_id)->orderBy('id', 'desc')->get();
+            }
+            if ($game == "football") {
+                $response = FootballPlaceBet::where('match_id', $match_id)->orderBy('id', 'desc')->get();
+            }
+            if ($game == "tennis") {
+                $response = TennisPlaceBet::where('match_id', $match_id)->orderBy('id', 'desc')->get();
+            }
+            if ($game == "horse") {
+                $response = HorseRacingPlaceBet::where('match_id', $match_id)->orderBy('id', 'desc')->get();
+            }
+            if ($game == "greyhound") {
+                $response = GreyhoundRacingPlaceBet::where('match_id', $match_id)->orderBy('id', 'desc')->get();
+            }
             return [
                 'status' => 'success',
                 'response' => $response,
-               
+
             ];
         } else {
             return  [
@@ -362,5 +362,104 @@ class CommandController extends Controller
 
             ];
         }
+    }
+
+    public function all_games_bet_count_and_data()
+    {
+        $CricketPlaceBet = CricketPlaceBet::where('bet_result', null)->orderBy('id', 'desc')->get();
+        $CricketPlaceBetcount = CricketPlaceBet::where('bet_result', null)->count();
+
+        $FootballPlaceBet = FootballPlaceBet::where('bet_result', null)->orderBy('id', 'desc')->get();
+        $FootballPlaceBetcount = FootballPlaceBet::where('bet_result', null)->count();
+
+        $TennisPlaceBet = TennisPlaceBet::where('bet_result', null)->orderBy('id', 'desc')->get();
+        $TennisPlaceBetcount = TennisPlaceBet::where('bet_result', null)->count();
+
+        $HorseRacingPlaceBet = HorseRacingPlaceBet::where('bet_result', null)->orderBy('id', 'desc')->get();
+        $HorseRacingPlaceBetcount = HorseRacingPlaceBet::where('bet_result', null)->count();
+
+        $GreyhoundRacingPlaceBet = GreyhoundRacingPlaceBet::where('bet_result', null)->orderBy('id', 'desc')->get();
+        $GreyhoundRacingPlaceBetcount = GreyhoundRacingPlaceBet::where('bet_result', null)->count();
+
+        $data = [
+            'CricketPlaceBet' =>   $CricketPlaceBet,
+            'CricketPlaceBetcount' =>   $CricketPlaceBetcount,
+            'FootballPlaceBet' =>   $FootballPlaceBet,
+            'FootballPlaceBetcount' =>   $FootballPlaceBetcount,
+            'TennisPlaceBet' =>   $TennisPlaceBet,
+            'TennisPlaceBetcount' =>   $TennisPlaceBetcount,
+            'HorseRacingPlaceBet' =>   $HorseRacingPlaceBet,
+            'HorseRacingPlaceBetcount' =>   $HorseRacingPlaceBetcount,
+            'GreyhoundRacingPlaceBet' =>   $GreyhoundRacingPlaceBet,
+            'GreyhoundRacingPlaceBetcount' =>   $GreyhoundRacingPlaceBetcount,
+        ];
+        return response()->json([
+            'status' => 'success',
+            'response' => $data,
+        ]);
+    }
+    public function all_games_bet_count()
+    {
+        $CricketPlaceBetcount = CricketPlaceBet::where('bet_result', null)->count();
+        $FootballPlaceBetcount = FootballPlaceBet::where('bet_result', null)->count();
+        $TennisPlaceBetcount = TennisPlaceBet::where('bet_result', null)->count();
+        $HorseRacingPlaceBetcount = HorseRacingPlaceBet::where('bet_result', null)->count();
+        $GreyhoundRacingPlaceBetcount = GreyhoundRacingPlaceBet::where('bet_result', null)->count();
+        $total = $CricketPlaceBetcount + $FootballPlaceBetcount + $TennisPlaceBetcount + $HorseRacingPlaceBetcount + $GreyhoundRacingPlaceBetcount;
+        $data = [
+            'total' =>   $total,
+            'CricketPlaceBetcount' =>   $CricketPlaceBetcount,
+            'FootballPlaceBetcount' =>   $FootballPlaceBetcount,
+            'TennisPlaceBetcount' =>   $TennisPlaceBetcount,
+            'HorseRacingPlaceBetcount' =>   $HorseRacingPlaceBetcount,
+            'GreyhoundRacingPlaceBetcount' =>   $GreyhoundRacingPlaceBetcount,
+        ];
+
+        return [
+            'status' => 'success',
+            'response' => $data,
+
+        ];
+    }
+    public function all_games_bet_reject($id, $game)
+    {
+        if ($game == "Cricket") {
+            $CricketPlaceBet = CricketPlaceBet::where('id', $id)->first();
+            $user = Admin::where('id', $CricketPlaceBet->user_id)->first();
+            $total = $user->balance + $CricketPlaceBet->bet_stake;
+            Admin::where('id', $CricketPlaceBet->user_id)->update(['balance' => $total]);
+            CricketPlaceBet::where('id', $id)->update(['bet_result' => '3']);
+        }
+        if ($game == "FootBall") {
+            $CricketPlaceBet = FootballPlaceBet::where('id', $id)->first();
+            $user = Admin::where('id', $CricketPlaceBet->user_id)->first();
+            $total = $user->balance + $CricketPlaceBet->bet_stake;
+            Admin::where('id', $CricketPlaceBet->user_id)->update(['balance' => $total]);
+            FootballPlaceBet::where('id', $id)->update(['bet_result' => '3']);
+        }
+        if ($game == "Tennis") {
+            $CricketPlaceBet = TennisPlaceBet::where('id', $id)->first();
+            $user = Admin::where('id', $CricketPlaceBet->user_id)->first();
+            $total = $user->balance + $CricketPlaceBet->bet_stake;
+            Admin::where('id', $CricketPlaceBet->user_id)->update(['balance' => $total]);
+            TennisPlaceBet::where('id', $id)->update(['bet_result' => '3']);
+        }
+        if ($game == "HorseRacing") {
+            $CricketPlaceBet = HorseRacingPlaceBet::where('id', $id)->first();
+            $user = Admin::where('id', $CricketPlaceBet->user_id)->first();
+            $total = $user->balance + $CricketPlaceBet->bet_stake;
+            Admin::where('id', $CricketPlaceBet->user_id)->update(['balance' => $total]);
+            HorseRacingPlaceBet::where('id', $id)->update(['bet_result' => '3']);
+        }
+        if ($game == "GreyhoundRacing") {
+            $CricketPlaceBet = GreyhoundRacingPlaceBet::where('id', $id)->first();
+            $user = Admin::where('id', $CricketPlaceBet->user_id)->first();
+            $total = $user->balance + $CricketPlaceBet->bet_stake;
+            Admin::where('id', $CricketPlaceBet->user_id)->update(['balance' => $total]);
+            GreyhoundRacingPlaceBet::where('id', $id)->update(['bet_result' => '3']);
+        }
+        return [
+            'status' => 'success',
+        ];
     }
 }

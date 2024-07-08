@@ -61,6 +61,7 @@ class LoginSubmitController extends Controller
         
 
         $user = Auth::guard('agent')->user();
+       
         // if (!$user || !Hash::check($request->agent_password, $user->password)) {
            
         //     return redirect()->back()->with('error', 'Authentication failed. Please check your password.')->withInput();
@@ -86,7 +87,7 @@ class LoginSubmitController extends Controller
         // $newAgent->exposure_limit = $request->exposure_limit;
         // $newAgent->message = $request->message;
         //  $newAgent->role_id =$role_id; 
-         $newAgent->role_id =5; 
+         $newAgent->role_id =$role_id; 
         $newAgent->admin_role = $user->role_id; 
         $newAgent->admin_id = $user->id; 
         $newAgent->save();

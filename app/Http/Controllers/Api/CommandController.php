@@ -401,18 +401,33 @@ class CommandController extends Controller
     public function all_games_bet_count()
     {
         $CricketPlaceBetcount = CricketPlaceBet::where('bet_result', null)->count();
+        $CricketPlaceBetcountnew = CricketPlaceBet::where('bet_result', null)->where('status', 0)->count();
+
         $FootballPlaceBetcount = FootballPlaceBet::where('bet_result', null)->count();
+        $FootballPlaceBetcountnew = FootballPlaceBet::where('bet_result', null)->where('status', 0)->count();
+
         $TennisPlaceBetcount = TennisPlaceBet::where('bet_result', null)->count();
+        $TennisPlaceBetcountnew = TennisPlaceBet::where('bet_result', null)->where('status', 0)->count();
+
         $HorseRacingPlaceBetcount = HorseRacingPlaceBet::where('bet_result', null)->count();
+        $HorseRacingPlaceBetcountnew = HorseRacingPlaceBet::where('bet_result', null)->where('status', 0)->count();
+
         $GreyhoundRacingPlaceBetcount = GreyhoundRacingPlaceBet::where('bet_result', null)->count();
+        $GreyhoundRacingPlaceBetcountnew = GreyhoundRacingPlaceBet::where('bet_result', null)->where('status', 0)->count();
+        
         $total = $CricketPlaceBetcount + $FootballPlaceBetcount + $TennisPlaceBetcount + $HorseRacingPlaceBetcount + $GreyhoundRacingPlaceBetcount;
         $data = [
             'total' =>   $total,
             'CricketPlaceBetcount' =>   $CricketPlaceBetcount,
+            'CricketPlaceBetcountnew' =>   $CricketPlaceBetcountnew,
             'FootballPlaceBetcount' =>   $FootballPlaceBetcount,
+            'FootballPlaceBetcountnew' =>   $FootballPlaceBetcountnew,
             'TennisPlaceBetcount' =>   $TennisPlaceBetcount,
+            'TennisPlaceBetcountnew' =>   $TennisPlaceBetcountnew,
             'HorseRacingPlaceBetcount' =>   $HorseRacingPlaceBetcount,
+            'HorseRacingPlaceBetcountnew' =>   $HorseRacingPlaceBetcountnew,
             'GreyhoundRacingPlaceBetcount' =>   $GreyhoundRacingPlaceBetcount,
+            'GreyhoundRacingPlaceBetcountnew' =>   $GreyhoundRacingPlaceBetcountnew,
         ];
 
         return [
@@ -457,6 +472,28 @@ class CommandController extends Controller
             $total = $user->balance + $CricketPlaceBet->bet_stake;
             Admin::where('id', $CricketPlaceBet->user_id)->update(['balance' => $total]);
             GreyhoundRacingPlaceBet::where('id', $id)->update(['bet_result' => '3']);
+        }
+        return [
+            'status' => 'success',
+        ];
+    }
+    public function all_games_bet_accept($id, $game)
+    {
+       
+        if ($game == "Cricket") {
+            CricketPlaceBet::where('id', $id)->update(['status' => '1']);
+        }
+        if ($game == "FootBall") {
+            FootballPlaceBet::where('id', $id)->update(['status' => '1']);
+        }
+        if ($game == "Tennis") {
+            TennisPlaceBet::where('id', $id)->update(['status' => '1']);
+        }
+        if ($game == "HorseRacing") {
+            HorseRacingPlaceBet::where('id', $id)->update(['status' => '1']);
+        }
+        if ($game == "GreyhoundRacing") {
+            GreyhoundRacingPlaceBet::where('id', $id)->update(['status' => '1']);
         }
         return [
             'status' => 'success',

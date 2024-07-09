@@ -151,14 +151,25 @@
                                             <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
+                                        @if (Auth::guard('agent')->user()->role_id == 4)
+                                        <div class="form-group">
+                                            <label for="phone" class="form-label">Phone Number</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">+91</span>
+                                                </div>
+                                                <input type="number" class="form-control" name="phone" id="phone" placeholder="Enter your phone number">
+                                            </div>
+                                        </div>
+
                                         <!-- <div class="mb-3" id="expouserlimit">
-                                            <label for="expouserlimit" class="form-label">Exposure Limit</label>
-                                            <input type="number" class="form-control  @error('exposure_limit') is-invalid @enderror" id="exposure_limit" name="exposure_limit" value="{{ old('exposure_limit') }}" autocomplete="off" placeholder="Expouser Limit">
+                                            <label for="expouserlimit" class="form-label">Phone Number</label>
+                                            <input type="number" class="form-control  @error('number') is-invalid @enderror" id="exposure_limit" name="number" value="{{ old('number') }}" autocomplete="off" placeholder="Number">
                                             @error('exposure_limit')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div> -->
-
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -182,6 +193,7 @@
                                 <div class="Information px-4 py-4 right">
                                     <div class="serch-filter">
                                         <div class="input-group mb-3">
+
                                             <!-- <label class="Search-By_User Name">
                                             @if (Auth::guard('agent')->user()->role_id == 3)
                                                 Super-Master password

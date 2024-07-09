@@ -131,6 +131,7 @@ use App\Helpers\QueryHelper;
                           <th class="">Downline</th>
                           @endif
                           <th class="">Betting Status</th>
+                          <th class="">Phone</th>
                           <th class="">Status</th>
                           <th class="">Details</th>
                           <th class="">Net Exposure</th>
@@ -184,6 +185,10 @@ use App\Helpers\QueryHelper;
                             @elseif($sc->betstatus == 0)
                             <a class="font-13 red"><i data-feather="lock"></i></a>
                             @endif
+                          </td>
+                          <td>
+                            {{$sc->phone}}
+                           
                           </td>
                           <td colspan="" class="">
                             @if($sc->status == 1)

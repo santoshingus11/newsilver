@@ -38,12 +38,13 @@ class LoginSubmitController extends Controller
             // 'message' => 'nullable|string',
             // 'agent_password' => 'required|string',
             'level' => 'required|string',
+            'phone' => 'nullable|unique:admins,phone',
         ]);
-    
+ 
         $validator->sometimes('confirm_password', 'different:password', function ($input) {
             return $input->password !== $input->confirm_password;
         });
-    
+      
         if ($validator->fails()) {
             return redirect()
                 ->back()
@@ -51,7 +52,7 @@ class LoginSubmitController extends Controller
                 ->withInput();
         }
         $existingUser = Admin::where('username', $request->username)->first();
-       
+      
         if ($existingUser) {
             return redirect()
                 ->back()
@@ -86,10 +87,12 @@ class LoginSubmitController extends Controller
         $newAgent->user_rate = 1;
         // $newAgent->exposure_limit = $request->exposure_limit;
         // $newAgent->message = $request->message;
+        $newAgent->phone = $request->phone;
         //  $newAgent->role_id =$role_id; 
          $newAgent->role_id =$role_id; 
         $newAgent->admin_role = $user->role_id; 
         $newAgent->admin_id = $user->id; 
+      
         $newAgent->save();
 
         // Redirect to the appropriate page after successful form submission

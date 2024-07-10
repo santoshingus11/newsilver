@@ -60,9 +60,10 @@ class ClientController extends Controller
         // Close cURL session
         curl_close($ch);
         echo '<pre>';
-        print_r($response);
+        print_r($response); 
         echo '</pre>';
         die();
+        
         return view('live');
     }
     public function logout()

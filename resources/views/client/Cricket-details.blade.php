@@ -9800,6 +9800,7 @@
         </div>
       </template></section>
   </div>
+  
   <script>
     $(".bets-section").hide();
     @if(empty(Session::get('myBets')))

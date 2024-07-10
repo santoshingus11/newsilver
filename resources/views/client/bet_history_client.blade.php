@@ -90,11 +90,9 @@
                                 <td class="text-center">{{$bet->team_name}}</td>
                                 <td class="text-center">CRICKET</td>
                                 
-                                <!--@if($bet->bet_result != NULL)-->
-                                <!--<td class="text-center green">{{$bet->bet_stake}}</td>-->
-                                <!--@else-->
+                              
                                 <td class="text-center red">{{$bet->bet_stake}}</td>
-                                <!--@endif-->
+                              
                                 @if($bet->bet_result == 1)
                                 <td class="text-center green">{{$bet->bet_profit}}</td>
                                 @elseif($bet->bet_result == 2)

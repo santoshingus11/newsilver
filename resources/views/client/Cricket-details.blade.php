@@ -1551,7 +1551,7 @@
                           </div>
 
 
-
+                          @if(!empty($response['match_odds']))
                           @foreach($response['match_odds'] as $r)
                           <div class="randerScore mainScore matchoddclass">
                             <div class="odds_rows">
@@ -1589,7 +1589,7 @@
                             </div><!---->
                           </div>
                           @endforeach
-
+                          @endif
                           <!---->
                         </div><!----><!----><!----><!---->
                       </div>
@@ -1604,7 +1604,7 @@
                                 <div class="Lay_oddsbox bhav_box">Lay</div>
                               </div>
                             </div>
-
+                            @if(!empty($response['bookmaker']))
                             @foreach($response['bookmaker'] as $r)
                             <div class="randerScore mainScore">
                               <div class="odds_rows">
@@ -1638,6 +1638,7 @@
                               </div><!---->
                             </div>
                             @endforeach
+                            @endif
                           </div>
 
                           <div class="col-md-4">
@@ -1650,7 +1651,7 @@
                               </div>
                             </div>
 
-
+                            @if(!empty($response['to_win_the_toss']))
                             @foreach($response['to_win_the_toss'] as $r)
                             <div class="randerScore mainScore">
                               <div class="odds_rows">
@@ -1684,7 +1685,7 @@
                               </div><!---->
                             </div>
                             @endforeach
-
+                            @endif
                           </div><!---->
                         </div><!----><!----><!---->
                       </div>
@@ -1699,7 +1700,7 @@
                             </div>
                           </div>
                           <div>
-
+                          @if(!empty($response['fancy']))
                             @foreach($response['fancy'] as $r)
                             <div class="randerScore mainScore">
                               <div class="odds_rows">
@@ -1733,7 +1734,7 @@
                               </div>
                             </div>
                             @endforeach
-
+                            @endif
                           </div>
                         </div><!----><!---->
                       </div>
@@ -1748,7 +1749,7 @@
                             </div>
                           </div>
                           <div>
-
+                          @if(!empty($response['run_bhav']))
                             @foreach($response['run_bhav'] as $r)
                             <div class="randerScore mainScore">
                               <div class="odds_rows">
@@ -1783,7 +1784,7 @@
                               </div>
                             </div>
                             @endforeach
-
+                            @endif
                           </div>
                         </div><!----><!---->
                       </div>
@@ -1798,7 +1799,7 @@
                             </div>
                           </div>
                           <div>
-
+                          @if(!empty($response['over_by_over_session_market']))
                             @foreach($response['over_by_over_session_market'] as $r)
                             <div class="randerScore mainScore">
                               <div class="odds_rows">
@@ -1833,7 +1834,7 @@
                               </div>
                             </div>
                             @endforeach
-
+                            @endif
                           </div>
                         </div><!----><!---->
                       </div>
@@ -1848,7 +1849,7 @@
                             </div>
                           </div>
                           <div>
-
+                          @if(!empty($response['ball_by_ball_session_market']))
                             @foreach($response['ball_by_ball_session_market'] as $r)
                             <div class="randerScore mainScore">
                               <div class="odds_rows">
@@ -1883,7 +1884,7 @@
                               </div>
                             </div><!---->
                             @endforeach
-
+                            @endif
                           </div>
                         </div><!----><!---->
                       </div>
@@ -1899,7 +1900,7 @@
                               <div class="Lay_oddsbox bhav_box">Lay</div>
                             </div>
                           </div>
-
+                          @if(!empty($response['tied_match']))
                           @foreach($response['tied_match'] as $r)
                           <div class="randerScore mainScore">
                             <div class="odds_rows">
@@ -1934,7 +1935,7 @@
                             </div><!---->
                           </div>
                           @endforeach
-
+                          @endif
                         </div><!----><!----><!----><!---->
                       </div>
                       <div><!----><!----><!---->

@@ -55,7 +55,7 @@
                     <div class="Lay_oddsbox bhav_box">Lay</div>
                   </div>
                 </div>
-
+                @if(!empty($response['match_odds']))
                 @foreach($response['match_odds'] as $r)
                 <div class="randerScore mainScore">
                   <div class="odds_rows">
@@ -89,7 +89,7 @@
                   </div><!---->
                 </div>
                 @endforeach
-
+                @endif
               </div><!----><!----><!----><!---->
             </div>
             <div><!----><!----><!----><!----></div><!----><!---->

@@ -19,7 +19,7 @@ use App\Models\BetRecord;
 class HomeController extends Controller
 {
     
-    public function cricket_details($game_id){
+    public function cricket_details(Request $request,$game_id){
         
         //get match list
         $ch = curl_init();
@@ -53,7 +53,13 @@ class HomeController extends Controller
         $game_single=json_decode($res, true);
         
         curl_close($gm);
-
+        if ($request->ajax()) {
+            return response()->json([
+                'response' => $response,
+                'game_single' => $game_single,
+                'game_id' => $game_id,
+            ]);
+          }
 // if ($game_id == 1) {
 //             return view('client.Cricket-details-ipl', compact('response', 'game_single'));
 //         }
@@ -153,7 +159,7 @@ class HomeController extends Controller
         
     }
     
-    public function football_details($game_id){
+    public function football_details(Request $request,$game_id){
         
          $ch = curl_init();
         // Disable SSL verification
@@ -193,7 +199,7 @@ class HomeController extends Controller
         $result=curl_exec($ch);
         $response=json_decode($result, true);
         curl_close($ch);
-        
+      
         //get Games list
         $gm = curl_init();
         curl_setopt($gm, CURLOPT_SSL_VERIFYPEER, false);
@@ -203,8 +209,14 @@ class HomeController extends Controller
         $res=curl_exec($gm);
         $game_single=json_decode($res, true);
         curl_close($gm);
-        
-        return view('client.Football-Details',compact('response','game_single','allGames'));
+        if ($request->ajax()) {
+            return response()->json([
+                'response' => $response,
+                'game_single' => $game_single,
+                'game_id' => $game_id,
+            ]);
+          }
+        return view('client.Football-Details',compact('response','game_single','allGames','game_id'));
     }
     
     public function football_bet_place(Request $request){

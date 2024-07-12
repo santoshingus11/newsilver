@@ -77,6 +77,7 @@ Route::middleware('client.login.check')->group(function () {
     
     Route::get('client',[ClientController::class,'client'])->name('client-home');
     Route::get('cricket-details/{game_id?}',[HomeController::class,'cricket_details'])->name('Cricket-details');
+    Route::get('cricket_details_ajax/{game_id?}',[HomeController::class,'cricket_details_ajax']);
     Route::post('cricket/bet-place',[HomeController::class,'cricket_bet_place'])->name('cricket-bet-place');
     
     

@@ -93,41 +93,12 @@
                       <div class="Lay_oddsbox bhav_box">Lay</div>
                     </div>
                   </div>
-                  @if(!empty($response['match_odds']))
-                  @foreach($response['match_odds'] as $r)
+                
                   <div class="randerScore mainScore matchoddclass">
-                    <div class="odds_rows">
-                      <div class="events_odds"><!---->
-                        <div class="event-names">
-                          <div class="horse-event">
-                            <div class="slogen-horce"><span class="team-horce team_name">{{$r['team_name']}}</span></div>
-                          </div>
-                          <div><!----><!----></div>
-                        </div><!---->
-                      </div>
-                      <div class="odds_bhav">
-                        @if($r['back_status']==1)
-                        <div class="back_oddsbox bhav_box"><strong class="odds ng-binding bet_text" data-back-lay="back" data-match-stake="{{$r['stake']}}" data-match-id="{{$r['id']}}" data-team-name="{{$r['team_name']}}">{{$r['back_value']}}</strong>
-                          <div class="size"><span class="ng-binding"> 39.27 </span></div>
-                        </div>
-                        @else
-                        <div style="background:white !important;" class="back_oddsbox bhav_box"></div>
-                      </div>
-                      @endif
-
-                      @if($r['lay_status']==1)
-                      <div class="Lay_oddsbox bhav_box"><strong class="odds ng-binding bet_text" data-back-lay="lay" data-match-stake="{{$r['stake']}}" data-match-id="{{$r['id']}}" data-team-name="{{$r['team_name']}}">{{$r['lay_value']}}</strong>
-                        <div class="size"><span class="ng-binding"> 45.7 </span></div>
-                      </div><!----><!---->
-                      @else
-                      <div style="background:white !important;" class="Lay_oddsbox bhav_box">
-                      </div><!----><!---->
-                      @endif
-                    </div>
+                  
                   </div><!---->
                 </div>
-                @endforeach
-                @endif
+                
               </div><!----><!----><!----><!---->
             </div>
             <div class="col-md-12">
@@ -140,40 +111,11 @@
                     <div class="Lay_oddsbox bhav_box">Lay</div>
                   </div>
                 </div>
-                @if(!empty($response['over_under_0_point_5_goals']))
-                @foreach($response['over_under_0_point_5_goals'] as $r)
-                <div class="randerScore mainScore over_under_0_point_5_goals">
-                  <div class="odds_rows">
-                    <div class="events_odds"><!---->
-                      <div class="event-names">
-                        <div class="horse-event">
-                          <div class="slogen-horce"><span class="team-horce team_name">{{$r['team_name']}}</span></div>
-                        </div>
-                        <div><!----><!----></div>
-                      </div><!---->
-                    </div>
-                    <div class="odds_bhav">
-                      @if($r['back_status']==1)
-                      <div class="back_oddsbox bhav_box"><strong class="odds ng-binding bet_text" data-back-lay="back" data-match-stake="{{$r['stake']}}" data-match-id="{{$r['id']}}" data-team-name="{{$r['team_name']}}">{{$r['back_value']}}</strong>
-                        <div class="size"><span class="ng-binding"> 5.39 </span></div>
-                      </div>
-                      @else
-                      <div style="background:white !important;" class="back_oddsbox bhav_box"></div>
-                      @endif
-
-                      @if($r['lay_status']==1)
-                      <div class="Lay_oddsbox bhav_box"><strong class="odds ng-binding bet_text" data-back-lay="lay" data-match-stake="{{$r['stake']}}" data-match-id="{{$r['id']}}" data-team-name="{{$r['team_name']}}">{{$r['lay_value']}}</strong>
-                        <div class="size"><span class="ng-binding"> 3.51 </span></div>
-                      </div><!----><!---->
-                      @else
-                      <div style="background:white !important;" class="Lay_oddsbox bhav_box">
-                      </div><!----><!---->
-                      @endif
-                    </div>
-                  </div><!---->
+               
+                <div class="randerScore mainScore " id="over_0_goals">
+                 
                 </div>
-                @endforeach
-                @endif
+              
               </div><!----><!----><!----><!---->
             </div>
             <div class="col-md-12">
@@ -186,41 +128,11 @@
                     <div class="Lay_oddsbox bhav_box">Lay</div>
                   </div>
                 </div>
-                @if(!empty($response['over_under_1_point_5_goals']))
-                @foreach($response['over_under_1_point_5_goals'] as $r)
-                <div class="randerScore mainScore over_under_1_point_5_goals">
-                  <div class="odds_rows">
-                    <div class="events_odds"><!---->
-                      <div class="event-names">
-                        <div class="horse-event">
-                          <div class="slogen-horce"><span class="team-horce team_name">{{$r['team_name']}}</span></div>
-                        </div>
-                        <div><!----><!----></div>
-                      </div><!---->
-                    </div>
-                    <div class="odds_bhav">
-                      @if($r['back_status']==1)
-                      <div class="back_oddsbox bhav_box"><strong class="odds ng-binding bet_text" data-back-lay="back" data-match-stake="{{$r['stake']}}" data-match-id="{{$r['id']}}" data-team-name="{{$r['team_name']}}">{{$r['back_value']}}</strong>
-                        <div class="size"><span class="ng-binding"> 58.72 </span></div>
-                      </div>
-                      @else
-                      <div style="background:white !important;" class="back_oddsbox bhav_box">
-                      </div>
-                      @endif
-
-                      @if($r['lay_status']==1)
-                      <div class="Lay_oddsbox bhav_box"><strong class="odds ng-binding bet_text" data-back-lay="lay" data-match-stake="{{$r['stake']}}" data-match-id="{{$r['id']}}" data-team-name="{{$r['team_name']}}">{{$r['lay_value']}}</strong>
-                        <div class="size"><span class="ng-binding"> 132.54 </span></div>
-                      </div><!----><!---->
-                      @else
-                      <div style="background:white !important;" class="Lay_oddsbox bhav_box">
-                      </div><!----><!---->
-                      @endif
-                    </div>
-                  </div><!---->
+               
+                <div class="randerScore mainScore " id="over_under_1_point_5_goals">
+               
                 </div>
-                @endforeach
-                @endif
+             
               </div><!----><!----><!----><!---->
             </div>
             <div class="col-md-12">
@@ -233,41 +145,11 @@
                     <div class="Lay_oddsbox bhav_box">Lay</div>
                   </div>
                 </div>
-                @if(!empty($response['over_under_2_point_5_goals']))
-                @foreach($response['over_under_2_point_5_goals'] as $r)
+               
                 <div class="randerScore mainScore over_under_2_point_5_goals">
-                  <div class="odds_rows">
-                    <div class="events_odds"><!---->
-                      <div class="event-names">
-                        <div class="horse-event">
-                          <div class="slogen-horce"><span class="team-horce team_name">{{$r['team_name']}}</span></div>
-                        </div>
-                        <div><!----><!----></div>
-                      </div><!---->
-                    </div>
-                    <div class="odds_bhav">
-                      @if($r['back_status']==1)
-                      <div class="back_oddsbox bhav_box"><strong class="odds ng-binding bet_text" data-back-lay="back" data-match-stake="{{$r['stake']}}" data-match-id="{{$r['id']}}" data-team-name="{{$r['team_name']}}">{{$r['back_value']}}</strong>
-                        <div class="size"><span class="ng-binding"> 92.49 </span></div>
-                      </div>
-                      @else
-                      <div style="background:white !important;" class="back_oddsbox bhav_box">
-                      </div>
-                      @endif
-
-                      @if($r['lay_status']==1)
-                      <div class="Lay_oddsbox bhav_box"><strong class="odds ng-binding bet_text" data-back-lay="lay" data-match-stake="{{$r['stake']}}" data-match-id="{{$r['id']}}" data-team-name="{{$r['team_name']}}">{{$r['lay_value']}}</strong>
-                        <div class="size"><span class="ng-binding"> 137.47 </span></div>
-                      </div><!----><!---->
-                      @else
-                      <div style="background:white !important;" class="Lay_oddsbox bhav_box">
-                      </div><!----><!---->
-                      @endif
-                    </div>
-                  </div><!---->
+                 
                 </div>
-                @endforeach
-                @endif
+              
               </div><!----><!----><!----><!---->
             </div>
             <div class="col-md-12">
@@ -280,41 +162,11 @@
                     <div class="Lay_oddsbox bhav_box">Lay</div>
                   </div>
                 </div>
-                @if(!empty($response['over_under_3_point_5_goals']))
-                @foreach($response['over_under_3_point_5_goals'] as $r)
+               
                 <div class="randerScore mainScore over_under_3_point_5_goals">
-                  <div class="odds_rows">
-                    <div class="events_odds"><!---->
-                      <div class="event-names">
-                        <div class="horse-event">
-                          <div class="slogen-horce"><span class="team-horce team_name">{{$r['team_name']}}</span></div>
-                        </div>
-                        <div><!----><!----></div>
-                      </div><!---->
-                    </div>
-                    <div class="odds_bhav">
-                      @if($r['back_status']==1)
-                      <div class="back_oddsbox bhav_box"><strong class="odds ng-binding bet_text" data-back-lay="back" data-match-stake="{{$r['stake']}}" data-match-id="{{$r['id']}}" data-team-name="{{$r['team_name']}}">{{$r['back_value']}}</strong>
-                        <div class="size"><span class="ng-binding"> 85 </span></div>
-                      </div>
-                      @else
-                      <div style="background:white !important;" class="back_oddsbox bhav_box">
-                      </div>
-                      @endif
-
-                      @if($r['lay_status']==1)
-                      <div class="Lay_oddsbox bhav_box"><strong class="odds ng-binding bet_text" data-back-lay="lay" data-match-stake="{{$r['stake']}}" data-match-id="{{$r['id']}}" data-team-name="{{$r['team_name']}}">{{$r['lay_value']}}</strong>
-                        <div class="size"><span class="ng-binding"> 208.03 </span></div>
-                      </div><!----><!---->
-                      @else
-                      <div style="background:white !important;" class="Lay_oddsbox bhav_box">
-                      </div><!----><!---->
-                      @endif
-                    </div>
-                  </div><!---->
+                 
                 </div>
-                @endforeach
-                @endif
+              
               </div><!----><!----><!----><!---->
             </div>
             <div><!----><!----><!----><!----></div><!----><!---->
@@ -490,7 +342,7 @@
     @if(empty(Session::get('myBets')))
     $(".show_bet").hide();
     @endif
-    $(".bet_text").click(function() {
+    $(document).on('click', '.bet_text', function() {
       $(".show_bet").show();
       const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
       if (isMobile) {
@@ -500,7 +352,7 @@
       }
       // $elem = $(this).parent("div");
       $elem = $(this).parents('.mainScore').first();
-      console.log($elem);
+
       // $elem.parents('.event-names').length // id = $div.attr("id");
 
       text = $elem.find(".team_name").text();
@@ -512,6 +364,7 @@
 
 
       console.log($(this).data("match-id"));
+      console.log($(this).text());
 
       // alert( text  );
       $('.bat_team_place').text(text);
@@ -615,7 +468,7 @@
         url: '/newsilvergit/football-details/' + game_id, // Update with your actual route
         method: 'GET',
         success: function(data) {
-          console.log(data.response.match_odds);
+          console.log(data.response);
           updateCricketDetails(data);
         },
         error: function(xhr, status, error) {
@@ -629,7 +482,7 @@
       // // Update the HTML with new data (example below, adapt as needed)
       var matchOddsHtml = '';
       $.each(data.response.match_odds, function(index, r) {
-        matchOddsHtml = `<div class="odds_rows">
+        matchOddsHtml += `<div class="odds_rows">
                     <div class="events_odds">
                         <div class="event-names">
                             <div class="horse-event">
@@ -665,9 +518,7 @@
                             data-back-lay="lay" 
                             data-match-stake="${r.stake}" 
                             data-match-id="${r.id}" 
-                            data-team-name="${r.team_name}">
-                            ${r.lay_value}
-                    </strong>
+                            data-team-name="${r.team_name}">${r.lay_value}</strong>
                     <div class="size">
                         <span class="ng-binding">45.7</span>
                     </div>
@@ -707,9 +558,7 @@
                             data-back-lay="back" 
                             data-match-stake="${r.stake}" 
                             data-match-id="${r.id}" 
-                            data-team-name="${r.team_name}">
-                            ${r.back_value}
-                    </strong>
+                            data-team-name="${r.team_name}">${r.back_value}</strong>
                     <div class="size">
                         <span class="ng-binding">5.39</span>
                     </div>
@@ -724,9 +573,7 @@
                             data-back-lay="lay" 
                             data-match-stake="${r.stake}" 
                             data-match-id="${r.id}" 
-                            data-team-name="${r.team_name}">
-                            ${r.lay_value}
-                    </strong>
+                            data-team-name="${r.team_name}">${r.lay_value}</strong>
                     <div class="size">
                         <span class="ng-binding">3.51</span>
                     </div>
@@ -740,12 +587,64 @@
 
       });
 
-      $('.over_under_1_point_5_goals').html(over_under_1_point_5_goals);
+      $('#over_under_1_point_5_goals').html(over_under_1_point_5_goals);
+      // over_under_1_point_5_goals
+      var over_0_goals = '';
+      $.each(data.response.over_under_0_point_5_goals, function(index, r) {
+        over_0_goals += `<div class="odds_rows">
+                    <div class="events_odds">
+                        <div class="event-names">
+                            <div class="horse-event">
+                                <div class="slogen-horce">
+                                    <span class="team-horce team_name">${r.team_name}</span>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div class="odds_bhav">`;
+
+        if (r.back_status == 1) {
+          over_0_goals += `<div class="back_oddsbox bhav_box">
+                    <strong class="odds ng-binding bet_text" 
+                            data-back-lay="back" 
+                            data-match-stake="${r.stake}" 
+                            data-match-id="${r.id}" 
+                            data-team-name="${r.team_name}">${r.back_value}</strong>
+                    <div class="size">
+                        <span class="ng-binding">5.39</span>
+                    </div>
+                </div>`;
+        } else {
+          over_0_goals += `<div style="background:white !important;" class="back_oddsbox bhav_box"></div>`;
+        }
+
+        if (r.lay_status == 1) {
+          over_0_goals += `<div class="Lay_oddsbox bhav_box">
+                    <strong class="odds ng-binding bet_text" 
+                            data-back-lay="lay" 
+                            data-match-stake="${r.stake}" 
+                            data-match-id="${r.id}" 
+                            data-team-name="${r.team_name}">${r.lay_value}</strong>
+                    <div class="size">
+                        <span class="ng-binding">3.51</span>
+                    </div>
+                </div>`;
+        } else {
+          over_0_goals += `<div style="background:white !important;" class="Lay_oddsbox bhav_box"></div>`;
+        }
+
+        over_0_goals += `</div>
+            </div>`;
+
+      });
+
+      $('#over_0_goals').html(over_0_goals);
 
       // over_under_2_point_5_goals
       var over_under_2_point_5_goals = '';
       $.each(data.response.over_under_2_point_5_goals, function(index, r) {
-        over_under_2_point_5_goals = `<div class="odds_rows">
+        over_under_2_point_5_goals += `<div class="odds_rows">
                     <div class="events_odds">
                         <div class="event-names">
                             <div class="horse-event">
@@ -764,9 +663,7 @@
                             data-back-lay="back" 
                             data-match-stake="${r.stake}" 
                             data-match-id="${r.id}" 
-                            data-team-name="${r.team_name}">
-                            ${r.back_value}
-                    </strong>
+                            data-team-name="${r.team_name}">${r.back_value}</strong>
                     <div class="size">
                         <span class="ng-binding">92.49</span>
                     </div>
@@ -781,9 +678,7 @@
                             data-back-lay="lay" 
                             data-match-stake="${r.stake}" 
                             data-match-id="${r.id}" 
-                            data-team-name="${r.team_name}">
-                            ${r.lay_value}
-                    </strong>
+                            data-team-name="${r.team_name}">${r.lay_value}</strong>
                     <div class="size">
                         <span class="ng-binding">137.47</span>
                     </div>
@@ -802,7 +697,7 @@
       // over_under_3_point_5_goals
       var over_under_3_point_5_goals = '';
       $.each(data.response.over_under_3_point_5_goals, function(index, r) {
-        over_under_3_point_5_goals = `<div class="odds_rows">
+        over_under_3_point_5_goals += `<div class="odds_rows">
                     <div class="events_odds">
                       <div class="event-names">
                         <div class="horse-event">
@@ -821,9 +716,7 @@
                             data-back-lay="back" 
                             data-match-stake="${r.stake}" 
                             data-match-id="${r.id}" 
-                            data-team-name="${r.team_name}">
-                            ${r.back_value}
-                    </strong>
+                            data-team-name="${r.team_name}">${r.back_value}</strong>
                     <div class="size">
                         <span class="ng-binding">85</span>
                     </div>
@@ -838,9 +731,7 @@
                             data-back-lay="lay" 
                             data-match-stake="${r.stake}" 
                             data-match-id="${r.id}" 
-                            data-team-name="${r.team_name}">
-                            ${r.lay_value}
-                    </strong>
+                            data-team-name="${r.team_name}">${r.lay_value}</strong>
                     <div class="size">
                         <span class="ng-binding">208.03</span>
                     </div>

@@ -287,7 +287,7 @@ class HomeController extends Controller
         return view('client.Tennis',compact('response','allGames'));
     }
     
-    public function tennis_details($game_id){
+    public function tennis_details(Request $request,$game_id){
          $ch = curl_init();
         // Disable SSL verification
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -336,8 +336,14 @@ class HomeController extends Controller
         $res=curl_exec($gm);
         $game_single=json_decode($res, true);
         curl_close($gm);
-        
-        return view('client.Tennis-details',compact('response','game_single','allGames'));
+        if ($request->ajax()) {
+            return response()->json([
+                'response' => $response,
+                'game_single' => $game_single,
+                'game_id' => $game_id,
+            ]);
+          }
+        return view('client.Tennis-details',compact('response','game_single','allGames','game_id'));
     }
     
     public function tennis_bet_place(Request $request){

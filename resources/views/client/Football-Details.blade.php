@@ -296,7 +296,7 @@
                       <div class="col"> 0 </div>
                     </div><!----><!----><!---->
                     <div class="stakes" style="width: 100%;">
-                      <div class="btn-group"><button type="button">100</button><button type="button">500</button><button type="button">1000</button><button type="button">5000</button><button type="button">10000</button><button type="button">25000</button><!----></div>
+                      <div class="btn-group"><button type="button">100</button><button type="button">500</button><button type="button">1000</button><button type="button">5000</button><button type="button">10000</button><button type="button">25000</button><button type="button" class="add_bet">25000</button><button type="button" class="add_bet">50000</button><button type="button" class="add_bet">100000</button><button type="button" class="add_bet">500000</button><!----></div>
                     </div><!---->
                     <div class="row align-items-center">
                       <div class="col"><button class="btn cancel-btn">reset</button></div>
@@ -501,9 +501,7 @@
                             data-back-lay="back" 
                             data-match-stake="${r.stake}" 
                             data-match-id="${r.id}" 
-                            data-team-name="${r.team_name}">
-                            ${r.back_value}
-                    </strong>
+                            data-team-name="${r.team_name}">${r.back_value}</strong>
                     <div class="size">
                         <span class="ng-binding">39.27</span>
                     </div>

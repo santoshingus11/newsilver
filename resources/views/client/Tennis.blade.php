@@ -85,12 +85,12 @@
                   <div class="row td-body" tabindex="0">
                     @if($r['status']==1)
                     <div class="col-md-4 col-lg-5 col-6 cursor"><a href="{{route('tenis_detail',$r['id'])}}">
-                        <p> {{$r['game_title']}}<span>&nbsp;/&nbsp;</span><b>{{date('M d Y h:i A', strtotime($r['created_at']))}} (IST)</b></p>
+                        <p> {{$r['game_title']}}<span>&nbsp;/&nbsp;</span><b>{{$r['run_date_time']}} (IST)</b></p>
                       </a><!---->
                     </div>
                     @else
                     <div class="col-md-4 col-lg-5 col-6 cursor">
-                        <p> {{$r['game_title']}}<span>&nbsp;/&nbsp;</span><b>{{date('M d Y h:i A', strtotime($r['created_at']))}} (IST)</b></p>
+                        <p> {{$r['game_title']}}<span>&nbsp;/&nbsp;</span><b>{{$r['run_date_time']}} (IST)</b></p>
                       <!---->
                     </div>
                     @endif

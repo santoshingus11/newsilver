@@ -117,7 +117,7 @@
                         <input type="hidden" name="bet_team_name" id="bet_team_name">
                       </div><!----><!----><!---->
                       <div class="stakes" style="width: 100%;">
-                        <div class="btn-group"><button type="button" class="add_bet">100</button><button type="button" class="add_bet">500</button><button type="button" class="add_bet">1000</button><button type="button" class="add_bet">5000</button><button type="button" class="add_bet">10000</button><button type="button" class="add_bet">25000</button><!----></div>
+                        <div class="btn-group"><button type="button" class="add_bet">100</button><button type="button" class="add_bet">500</button><button type="button" class="add_bet">1000</button><button type="button" class="add_bet">5000</button><button type="button" class="add_bet">10000</button><button type="button" class="add_bet">25000</button><button type="button" class="add_bet">25000</button><button type="button" class="add_bet">50000</button><button type="button" class="add_bet">100000</button><button type="button" class="add_bet">500000</button><!----></div>
                       </div><!---->
                       <div class="row align-items-center">
                         <div class="col"><button class="btn cancel-btn" id="reset_btn">reset</button></div>

@@ -1863,8 +1863,7 @@
                             <div class="col"> Profit </div>
                           </div>
                           <div class="row border-bottom align-items-center">
-                            <div class="col col-md-4 text-left bat_team_place"><a><i _ngcontent-uhn-c87="" class="fa fa-close text-danger"></i></a> Sunrisers
-                              Hyderabad </div>
+                            <div class="col col-md-4 text-left bat_team_place"><a><i _ngcontent-uhn-c87="" class="fa fa-close text-danger"></i></a> </div>
                             <div class="col">
                               <input type="text" name="bet_odds" id="bet_input" readonly="true" min="1.01" max="999.99" class="form-control ng-untouched ng-pristine ng-valid">
                               <input type="hidden" name="bet_input_stake" id="bet_input_stake">
@@ -1950,8 +1949,7 @@
                           <div class="col"> Profit </div>
                         </div>
                         <div class="row border-bottom align-items-center">
-                          <div class="col col-md-4 text-left bat_team_place"><a><i _ngcontent-uhn-c87="" class="fa fa-close text-danger"></i></a> Sunrisers
-                            Hyderabad </div>
+                          <div class="col col-md-4 text-left bat_team_place"><a><i _ngcontent-uhn-c87="" class="fa fa-close text-danger"></i></a> </div>
                           <div class="col">
                             <input type="text" name="bet_odds" id="bet_input" readonly="true" min="1.01" max="999.99" class="form-control ng-untouched ng-pristine ng-valid">
                             <input type="hidden" name="bet_input_stake" id="bet_input_stake">

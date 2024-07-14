@@ -30,6 +30,8 @@ class TransferController extends Controller
       return view('agent.agency-management-transfer-search', compact('data'));
     }
 
+    
+
     return view('agent.agency-management-transfer', compact('data'));
   }
 
@@ -153,9 +155,9 @@ class TransferController extends Controller
       $ownid = QueryHelper::ownid();
       $withdrawAmount = $request->input('withdraw_amount');
       if ($withdrawAmount > 0) {
-          $withdrawAmount = -$withdrawAmount;
+        $withdrawAmount = -$withdrawAmount;
       }
-  
+
       // Update the request with the modified value
       $request->merge(['withdraw_amount' => $withdrawAmount]);
       // if ($request->amount >= 0) {
@@ -163,14 +165,14 @@ class TransferController extends Controller
       // } else {
       //   $type = 'W';
       // }
- 
-     
+
+
       if (!empty($request->amount)) {
         $type = 'D';
       } else {
         $type = 'W';
       }
-    
+
       $data = Admin::where('id', Auth::guard('agent')->user()->id)->first();
 
       // if(Hash::check($request->agent_password,$data->password)){   
@@ -214,7 +216,7 @@ class TransferController extends Controller
       BankingHistory::insert(
         [
           'type' => $type,
-          'amount' => str_replace('-', '',$amount_check ),
+          'amount' => str_replace('-', '', $amount_check),
           'remarks' => $request->note,
           'parent_id' => Auth::guard('agent')->user()->id,
           'user_id' => $request->id,
@@ -223,13 +225,13 @@ class TransferController extends Controller
         ]
       );
       if ($type != 'W') {
-      BalanceLog::insert([
-        'balance_amount' => str_replace('-', '', $amount_check),
-        'balance_given_by' => Auth::guard('agent')->user()->id,
-        'balance_given_to' => $request->id,
-        'note' => $request->note
-      ]);
-    }
+        BalanceLog::insert([
+          'balance_amount' => str_replace('-', '', $amount_check),
+          'balance_given_by' => Auth::guard('agent')->user()->id,
+          'balance_given_to' => $request->id,
+          'note' => $request->note
+        ]);
+      }
       // DB::enableQueryLog();
       if ($type == 'D') {
         Admin::where('id', $request->id)->update(['balance' => DB::raw('balance + ' . $request->amount)]);

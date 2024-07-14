@@ -59,6 +59,13 @@ $available_credit=QueryHelper::total_availablecredit(Auth::guard('agent')->user(
             <ul class="d-flex justify-content-between Balance_Down">
               <li>Balance Down: <span class="red">{{$total_balancedown ?? '0.00'}}</span></li>
               <li>Balance Up: <span class="green">
+              <?php
+
+use App\Models\BankingHistory;
+
+$exposure = BankingHistory::where('parent_id',Auth::guard('agent')->user()->id)->where('type','W')->sum('amount');
+ 
+?>
                   <?php
 
 use App\Helpers\QueryHelper;
@@ -67,7 +74,7 @@ use App\Helpers\QueryHelper;
                     <?php echo $total_balanceup - $total_balancedown ?? "" ?>
                   <?php } ?>
                 </span></li>
-              <li>Net Exposure: <span @if($netexposure>0) class="green" @else class="red" @endif >{{$netexposure ?? '0.00'}}</span></li>
+              <li>Net Exposure: <span @if($exposure>0) class="green" @else class="red" @endif >{{$exposure ?? '0.00'}}</span></li>
               <li>Available Credit: <span @if($available_credit>0) class="green" @else class="red" @endif>{{$available_credit ?? '0.00'}}</span></li>
             </ul>
           </div>

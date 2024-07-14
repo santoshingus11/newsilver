@@ -127,7 +127,7 @@
                       </a><!----></div>
 
                     <div class="col-md-1 col-lg-2 col-6 px-lg-0">
-                      <div class="game-icons"><span class="game-icon"><span @if($r['status']==1) class="active" @endif></span><!----></span><span class="game-icon"><i class="fa fa-tv v-m icon-tv cursor loginButton"></i><!----></span><span class="game-icon"><img src="{{asset('/')}}/assets/img/icons/ic_fancy.png" class="fancy-icon cursor"><!----></span><span class="game-icon"><img src="{{asset('/')}}/assets/img/icons/ic_bm.png" class="bookmaker-icon cursor"><!----></span></div><!---->
+                      <div class="game-icons"><span class="game-icon"><span @if($r['channel_id']!="") class="active" @endif></span><!----></span><span class="game-icon"><i class="fa fa-tv v-m icon-tv cursor loginButton"></i><!----></span><span class="game-icon"><img src="{{asset('/')}}/assets/img/icons/ic_fancy.png" class="fancy-icon cursor"><!----></span><span class="game-icon"><img src="{{asset('/')}}/assets/img/icons/ic_bm.png" class="bookmaker-icon cursor"><!----></span></div><!---->
                     </div>
                     <div class="col-md-4 col-12 d-sm-none d-block th-head text-center"><span>1</span><span>X</span><span>2</span></div><!---->
                     <div class="col-md-7 col-lg-5 col-12 pr-xl-0">

@@ -40,6 +40,78 @@
             </div>
             <div id="liveTvMatch"></div>
           <?php } ?>
+
+          <style>
+              .scoreboard {
+                background-color: #004080;
+                /* Dark blue background */
+                color: white;
+                padding: 10px;
+                border-radius: 5px;
+                margin-top: 20px;
+              }
+
+              .background {
+                background-image: url('{{url("/public/scorecard-bg.png")}}');
+                /* Replace with your background image URL */
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                padding: 20px;
+                border-radius: 5px;
+              }
+
+              .match-info,
+              .score-info,
+              .target-info,
+              .commentary-info {
+                background-color: rgba(0, 0, 0, 0.5);
+                /* Semi-transparent black */
+                padding: 10px;
+                margin-top: 5px;
+                border-radius: 5px;
+              }
+
+              .badge-custom {
+                padding: 10px;
+                font-size: 1.2rem;
+              }
+
+              .badge-4 {
+                background-color: blue;
+              }
+
+              .badge-1 {
+                background-color: green;
+              }
+
+              .badge-0 {
+                background-color: grey;
+              }
+
+              .content {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+              }
+
+              .commentary-info {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+              }
+            </style>
+            <div class="scoreboard">
+              <div class="background">
+                <div class="content">
+                  <h2><span> {{$game_single['game_title']}} </span><span>{{$game_single['run_date_time']}}
+                    </span>
+                  </h2>
+                </div>
+               <div id="scoreboard"></div>
+
+              </div>
+            </div>
           <h2 class="event-title">{{$game_single['game_title']}}</h2>
           <div id="scoreCard" class="multi-collapse">
             <div class="col-12 px-0"><app-score-card><!----></app-score-card></div>
@@ -320,6 +392,34 @@
           console.error('Error fetching cricket details:', error);
         }
       });
+
+      $.ajax({
+        url: game_id, // Update with your actual route
+        method: 'GET',
+        success: function(data) {
+          console.log(data);
+          var score = `
+             <div class="commentary-info">
+                  <div>${data.score.tennis.team_name_a} :</div>
+                  <div id="score_data">
+                    ${data.score.tennis.score_a}
+                  </div>
+                </div>
+                <div class="commentary-info">
+                  <div>${data.score.tennis.team_name_b} :</div>
+                  <div id="score_data">
+                    ${data.score.tennis.score_b}
+                  </div>
+                </div>
+                  <span class="badge badge-custom badge-0"></span>
+          `;
+          $('#scoreboard').html(score);
+        },
+        error: function(xhr, status, error) {
+          console.error('Error fetching cricket details:', error);
+        }
+      });
+
     }
 
 

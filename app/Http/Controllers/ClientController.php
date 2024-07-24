@@ -404,4 +404,32 @@ class ClientController extends Controller
 
         return view('client.bet_history_client', compact('betRecords', 'cricketBets', 'footballBets', 'tennisBets', 'horseBets', 'greyhoundBets'));
     }
+
+    public function games_score()
+    {
+
+        $ch = curl_init();
+        // Disable SSL verification
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        // Will return the response, if false it print the response
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // Set the url
+        curl_setopt($ch, CURLOPT_URL, "https://ujala11games.com/api/cricket/game-list");
+        // Execute
+        $result = curl_exec($ch);
+        // Will dump a beauty json <3
+        $response = json_decode($result, true);
+
+        curl_close($ch);
+
+        $data = [
+            'labels' => $gameData->content->gameLabels,
+            'games' => $gameData->content->gameList,
+            'liveGames' => $liveEvolutionLobbyGames,
+            // 'sportBetGames' => $sportBetGames
+        ];
+
+
+        return view('client.home', compact('response', 'allGames'))->with('data', $data);
+    }
 }

@@ -1373,6 +1373,67 @@
       src: url('chrome-extension://liecbddmkiiihnedobmlmillhodjkdmb/fonts/CircularXXWeb-Bold.woff2') format('woff2');
     }
   </style>
+
+  <style>
+    .scoreboard {
+      background-color: #004080;
+      /* Dark blue background */
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+
+    .background {
+      background-image: url('{{url("/public/scorecard-bg.png")}}');
+      /* Replace with your background image URL */
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      padding: 20px;
+      border-radius: 5px;
+    }
+
+    .match-info,
+    .score-info,
+    .target-info,
+    .commentary-info {
+      background-color: rgba(0, 0, 0, 0.5);
+      /* Semi-transparent black */
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+    }
+
+    .badge-custom {
+      padding: 10px;
+      font-size: 1.2rem;
+    }
+
+    .badge-4 {
+      background-color: blue;
+    }
+
+    .badge-1 {
+      background-color: green;
+    }
+
+    .badge-0 {
+      background-color: grey;
+    }
+
+    .content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .commentary-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  </style>
 </head>
 
 <body class="main-content-pages">
@@ -1532,6 +1593,23 @@
                       </div>
                       <div id="liveTvMatch"> </div>
                     <?php } ?>
+
+                    <div class="scoreboard">
+                      <div class="background">
+                        <div class="content">
+                          <h2><span> {{$game_single['game_title']}} </span><span>{{$game_single['datetimeGMT']}}
+                            </span>
+                          </h2>
+                        </div>
+                        <div class="commentary-info">
+                          <div>Ball By Ball Score :</div>
+                          <div id="score_data">
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
                     <h2 _ngcontent-uhn-c91="" class="event-title"><span _ngcontent-uhn-c91=""> {{$game_single['game_title']}} </span><span _ngcontent-uhn-c91="">{{$game_single['datetimeGMT']}}
                       </span></h2>
 
@@ -1551,11 +1629,11 @@
                           </div>
 
 
-                       
+
                           <div class="randerScore mainScore " id="matchoddclass">
-                           
+
                           </div>
-                       
+
 
                         </div>
                       </div>
@@ -1570,11 +1648,11 @@
                                 <div class="Lay_oddsbox bhav_box">Lay</div>
                               </div>
                             </div>
-                           
+
                             <div class="randerScore mainScore " id="matchOddsbookmark">
-                             
+
                             </div>
-                           
+
                           </div>
 
                           <div class="col-md-4">
@@ -1587,11 +1665,11 @@
                               </div>
                             </div>
 
-                          
+
                             <div class="randerScore mainScore " id="to_win_the_toss">
-                           
+
                             </div>
-                           
+
                           </div>
                         </div>
                       </div>
@@ -1606,11 +1684,11 @@
                             </div>
                           </div>
                           <div>
-                          
+
                             <div class="randerScore mainScore " id="htmlStringmatch_fancyd">
-                           
+
                             </div>
-                         
+
                           </div>
                         </div>
                       </div>
@@ -1625,11 +1703,11 @@
                             </div>
                           </div>
                           <div>
-                         
+
                             <div class="randerScore mainScore " id="run_bhav">
-                            
+
                             </div>
-                            
+
                           </div>
                         </div>
                       </div>
@@ -1644,11 +1722,11 @@
                             </div>
                           </div>
                           <div>
-                           
+
                             <div class="randerScore mainScore " id="over_by_over_session_market">
-                            
+
                             </div>
-                          
+
                           </div>
                         </div>
                       </div>
@@ -1663,11 +1741,11 @@
                             </div>
                           </div>
                           <div>
-                           
+
                             <div class="randerScore mainScore " id="ball_by_ball_session_market">
-                            
+
                             </div>
-                          
+
                           </div>
                         </div>
                       </div>
@@ -1683,11 +1761,11 @@
                               <div class="Lay_oddsbox bhav_box">Lay</div>
                             </div>
                           </div>
-                        
+
                           <div class="randerScore mainScore " id="tied_match">
-                           
+
                           </div>
-                        
+
                         </div>
                       </div>
                       <div>
@@ -9649,7 +9727,7 @@
           url: game_id, // Update with your actual route
           method: 'GET',
           success: function(data) {
-            console.log(data);
+           
             var matchOddsHtml = '';
             $.each(data.response.match_odds, function(index, r) {
               //matchOddsHtml
@@ -10059,6 +10137,26 @@
             console.error('Error fetching cricket details:', error);
           }
         });
+
+        $.ajax({
+          url: game_id, // Update with your actual route
+          method: 'GET',
+          success: function(data) {
+            console.log(data);
+            var score = '';
+            $.each(data.score.cricket, function(index, r) {
+
+              score += `
+                    <span class="badge badge-custom badge-0">${r.score}</span>
+            `;
+            });
+            $('#score_data').html(score);
+
+          },
+          error: function(xhr, status, error) {
+            console.error('Error fetching cricket details:', error);
+          }
+        });
       }
 
       // Load cricket details every 5 seconds
@@ -10070,20 +10168,20 @@
   </script>
 
 
-<script>
-      function updateProfit(amnt) {
-        var odds = parseFloat($("#bet_input_stake").val()) || 1;
-        var profit = amnt * odds;
-        $(".profit_div").text(profit.toFixed(2)); // Format profit to 2 decimal places
-        $("#bet_profit").val(profit);
-        $('.betplace-btn').prop("disabled", false);
+  <script>
+    function updateProfit(amnt) {
+      var odds = parseFloat($("#bet_input_stake").val()) || 1;
+      var profit = amnt * odds;
+      $(".profit_div").text(profit.toFixed(2)); // Format profit to 2 decimal places
+      $("#bet_profit").val(profit);
+      $('.betplace-btn').prop("disabled", false);
     }
     $("#add_input").on('input', function() {
-     
-        var amnt = parseFloat($(this).val()) || 0;
-        updateProfit(amnt);
+
+      var amnt = parseFloat($(this).val()) || 0;
+      updateProfit(amnt);
     });
-</script>
+  </script>
 </body>
 
 </html>

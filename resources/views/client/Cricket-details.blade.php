@@ -1440,7 +1440,7 @@
   @if(Session::has('message'))
   <p class="alert alert-success">{{ Session::get('message') }}</p>
   @endif
-  <input type="hidden" id="channel_id" name="channel_id" value="{{$game_single['channel_id']}}">
+  <input type="hidden" id="channel_id" name="channel_id" value="{{$game_single['channel_id'] ?? ''}}">
   <app-root _nghost-uhn-c12="" ng-version="12.1.5"><router-outlet _ngcontent-uhn-c12=""></router-outlet><app-layout _nghost-uhn-c75=""><app-topnav _nghost-uhn-c72="">
         <div class="topbar">
           <div class="container-fluid">
@@ -1602,10 +1602,14 @@
                           </h2>
                         </div>
                         <div class="commentary-info">
-                          <div>Ball By Ball Score :</div>
-                          <div id="score_data">
-
+                          <div>Target:</div>
+                          <div id="target">
+                          
                           </div>
+                        </div>
+                        <div class="commentary-info">
+                          <div>Ball By Ball Score :</div>
+                          <div id="score_data"></div>
                         </div>
                       </div>
                     </div>
@@ -10143,6 +10147,18 @@
           method: 'GET',
           success: function(data) {
             console.log(data);
+            var target = data.score.cricket_detail.target;
+var teamNameA = data.score.cricket_detail.team_name_a;
+
+var displayText = target === null || target === undefined ? 'Yet To Bat' : target;
+
+            var target = '';
+            target = `
+    <span class="badge badge-custom badge-0">${teamNameA} : ${displayText}</span>
+`;
+           
+            $('#target').html(target);
+
             var score = '';
             $.each(data.score.cricket, function(index, r) {
 

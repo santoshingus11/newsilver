@@ -101,6 +101,7 @@
                 align-items: center;
               }
             </style>
+             <?php if(!empty($game_single['channel_id'])) { ?>
             <div class="scoreboard">
               <div class="background">
                 <div class="content">
@@ -112,6 +113,7 @@
 
               </div>
             </div>
+            <?php } ?>
           <h2 class="event-title">{{$game_single['game_title']}}</h2>
           <div id="scoreCard" class="multi-collapse">
             <div class="col-12 px-0"><app-score-card><!----></app-score-card></div>

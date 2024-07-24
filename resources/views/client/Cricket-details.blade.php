@@ -1593,7 +1593,7 @@
                       </div>
                       <div id="liveTvMatch"> </div>
                     <?php } ?>
-
+                      <?php if(!empty($game_single['channel_id'])) { ?>
                     <div class="scoreboard">
                       <div class="background">
                         <div class="content">
@@ -1609,7 +1609,7 @@
                         </div>
                       </div>
                     </div>
-
+<?php } ?>
                     <h2 _ngcontent-uhn-c91="" class="event-title"><span _ngcontent-uhn-c91=""> {{$game_single['game_title']}} </span><span _ngcontent-uhn-c91="">{{$game_single['datetimeGMT']}}
                       </span></h2>
 

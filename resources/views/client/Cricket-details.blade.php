@@ -1580,12 +1580,7 @@
                     }
                     ?>
 
-                    @php
 
-                    $dateTime = new DateTime($game_single['datetimeGMT'] , new DateTimeZone('GMT'));
-                    $dateTime->setTimezone(new DateTimeZone('Asia/Kolkata'));
-                    $istTime = $dateTime->format('Y-m-d H:i:s');
-                    @endphp
                     <?php if ($_SERVER['HTTP_USER_AGENT'] && strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) { ?>
                       <!--<h2 class="event-title text-center"><a href="https://allinone-tataplay-web-one.vercel.app/player.html?channel={{$game_single['channel_id']}}" target="_blank"> Live Match </a></h2>-->
                       <div class="betting-table lay-bt" style="position: relative;">
@@ -1593,27 +1588,32 @@
                       </div>
                       <div id="liveTvMatch"> </div>
                     <?php } ?>
-                      <?php if(!empty($game_single['channel_id'])) { ?>
-                    <div class="scoreboard">
-                      <div class="background">
-                        <div class="content">
-                          <h2><span> {{$game_single['game_title']}} </span><span>{{$game_single['datetimeGMT']}}
-                            </span>
-                          </h2>
-                        </div>
-                        <div class="commentary-info">
-                          <div>Target:</div>
-                          <div id="target">
-                          
+                    <?php if (!empty($game_single['channel_id'])) { ?>
+                      <div class="scoreboard">
+                        <div class="background">
+                          <div class="content">
+                            <h2><span> {{$game_single['game_title']}} </span><span>{{$game_single['datetimeGMT']}}
+                              </span>
+                            </h2>
                           </div>
-                        </div>
-                        <div class="commentary-info">
-                          <div>Ball By Ball Score :</div>
-                          <div id="score_data"></div>
+                          <div class="commentary-info">
+                            <div>Target:</div>
+                            <div id="target">
+
+                            </div>
+                          </div>
+                          <div class="commentary-info">
+                            <div>Score board :</div>
+                            <div id="nowscore"></div>
+                          </div>
+                          <div class="commentary-info">
+                            <div>Ball By Ball Score :</div>
+                            <div id="score_data"></div>
+                          </div>
+                          
                         </div>
                       </div>
-                    </div>
-<?php } ?>
+                    <?php } ?>
                     <h2 _ngcontent-uhn-c91="" class="event-title"><span _ngcontent-uhn-c91=""> {{$game_single['game_title']}} </span><span _ngcontent-uhn-c91="">{{$game_single['datetimeGMT']}}
                       </span></h2>
 
@@ -9731,7 +9731,7 @@
           url: game_id, // Update with your actual route
           method: 'GET',
           success: function(data) {
-           
+
             var matchOddsHtml = '';
             $.each(data.response.match_odds, function(index, r) {
               //matchOddsHtml
@@ -10148,16 +10148,23 @@
           success: function(data) {
             console.log(data);
             var target = data.score.cricket_detail.target;
-var teamNameA = data.score.cricket_detail.team_name_a;
+            var teamNameA = data.score.cricket_detail.team_name_a;
 
-var displayText = target === null || target === undefined ? 'Yet To Bat' : target;
+            var displayText = target === null || target === undefined ? 'Yet To Bat' : target;
 
             var target = '';
             target = `
     <span class="badge badge-custom badge-0">${teamNameA} : ${displayText}</span>
 `;
-           
+
             $('#target').html(target);
+            
+            var nowscore = '';
+            nowscore = `
+    <span class="badge badge-custom badge-0">${data.score.cricket_detail.play_score} / ${data.score.cricket_detail.play_wicket}</span>
+`;
+
+            $('#nowscore').html(nowscore);
 
             var score = '';
             $.each(data.score.cricket, function(index, r) {

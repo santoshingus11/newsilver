@@ -25,7 +25,7 @@
 @endsection
 @section('content')
 
-<input type="hidden" id="channel_id" name="channel_id" value="{{$game_single['channel_id']}}">
+<input type="hidden" id="channel_id" name="channel_id" value="{{$game_single['channel_id'] ?? ''}}">
 <div class="col-md-10 pxxs-0"><router-outlet></router-outlet><app-sport-detail>
     <div class="wrapper-inner detail_screen">
       <div>
@@ -139,18 +139,18 @@
                 align-items: center;
               }
             </style>
-             <?php if(!empty($game_single['channel_id'])) { ?>
-            <div class="scoreboard">
-              <div class="background">
-                <div class="content">
-                  <h2><span> {{$game_single['game_title']}} </span><span>{{$game_single['run_date_time']}}
-                    </span>
-                  </h2>
-                </div>
-               <div id="scoreboard"></div>
+            <?php if (!empty($game_single['channel_id'])) { ?>
+              <div class="scoreboard">
+                <div class="background">
+                  <div class="content">
+                    <h2><span> {{$game_single['game_title']}} </span><span>{{$game_single['run_date_time']}}
+                      </span>
+                    </h2>
+                  </div>
+                  <div id="scoreboard"></div>
 
+                </div>
               </div>
-            </div>
             <?php } ?>
             <h2 class="event-title">{{$game_single['game_title']}}</h2>
             <div id="scoreCard" class="multi-collapse">
@@ -544,7 +544,7 @@
         // url: '/newsilvergit/football-details/' + game_id, // Update with your actual route
         method: 'GET',
         success: function(data) {
-          
+
           updateCricketDetails(data);
         },
         error: function(xhr, status, error) {
@@ -562,15 +562,12 @@
                   <div>${data.score.football.team_name_a} :</div>
                   <div id="score_data">
                     ${data.score.football.score_a}
-                  </div>
-                </div>
-                <div class="commentary-info">
+                  </div> | 
                   <div>${data.score.football.team_name_b} :</div>
                   <div id="score_data">
                     ${data.score.football.score_b}
                   </div>
                 </div>
-                  <span class="badge badge-custom badge-0"></span>
           `;
           $('#scoreboard').html(score);
         },
@@ -578,7 +575,7 @@
           console.error('Error fetching cricket details:', error);
         }
       });
-  
+
     }
 
     function updateCricketDetails(data) {
@@ -850,7 +847,7 @@
       $('.over_under_3_point_5_goals').html(over_under_3_point_5_goals);
 
 
-      
+
     }
 
 

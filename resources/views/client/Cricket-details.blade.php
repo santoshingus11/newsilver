@@ -1582,7 +1582,7 @@
 
 
                     <?php if ($_SERVER['HTTP_USER_AGENT'] && strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) { ?>
-                      <!--<h2 class="event-title text-center"><a href="https://allinone-tataplay-web-one.vercel.app/player.html?channel={{$game_single['channel_id']}}" target="_blank"> Live Match </a></h2>-->
+
                       <div class="betting-table lay-bt" style="position: relative;">
                         <h2 _ngcontent-uhn-c87="" class="mrkname" id="liveMatchLink"> Live Match </h2>
                       </div>
@@ -1592,7 +1592,7 @@
                       <div class="scoreboard">
                         <div class="background">
                           <div class="content">
-                            <h2><span> {{$game_single['game_title']}} </span><span>{{$game_single['datetimeGMT']}}
+                            <h2><span> {{$game_single['game_title'] ?? ""}} </span><span>{{$game_single['datetimeGMT'] ?? ""}}
                               </span>
                             </h2>
                           </div>
@@ -1607,14 +1607,14 @@
                             <div id="nowscore"></div>
                           </div>
                           <div class="commentary-info">
-                            <div>Ball By Ball Score :</div>
+                            <div>Ball By Ball Score : <span id="playing_team"></span></div>
                             <div id="score_data"></div>
                           </div>
-                          
+
                         </div>
                       </div>
                     <?php } ?>
-                    <h2 _ngcontent-uhn-c91="" class="event-title"><span _ngcontent-uhn-c91=""> {{$game_single['game_title']}} </span><span _ngcontent-uhn-c91="">{{$game_single['datetimeGMT']}}
+                    <h2 _ngcontent-uhn-c91="" class="event-title"><span _ngcontent-uhn-c91=""> {{$game_single['game_title'] ?? ""}} </span><span _ngcontent-uhn-c91="">{{$game_single['datetimeGMT'] ?? ""}}
                       </span></h2>
 
                     <div id="scoreCard" class="multi-collapse">
@@ -10158,22 +10158,27 @@
 `;
 
             $('#target').html(target);
-            
+
             var nowscore = '';
             nowscore = `
-    <span class="badge badge-custom badge-0">${data.score.cricket_detail.play_score} / ${data.score.cricket_detail.play_wicket}</span>
+  <span class="badge badge-custom badge-1"> Score </span>  <span class="badge badge-custom badge-0">${data.score.cricket_detail.play_score} / ${data.score.cricket_detail.play_wicket}</span> <span class="badge badge-custom badge-1"> Over Completed </span> <span class="badge badge-custom badge-0"> ${data.score.cricket_detail.play_over} </span>
 `;
 
             $('#nowscore').html(nowscore);
 
             var score = '';
+            var playing_team = '';
             $.each(data.score.cricket, function(index, r) {
 
               score += `
                     <span class="badge badge-custom badge-0">${r.score}</span>
             `;
+              playing_team = `
+                    <span class="badge badge-custom badge-1">${r.team_name}</span>
+            `;
             });
             $('#score_data').html(score);
+            $('#playing_team').html(playing_team);
 
           },
           error: function(xhr, status, error) {

@@ -154,10 +154,24 @@ class HomeController extends Controller
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         // Set the url
         curl_setopt($ch, CURLOPT_URL, "https://ujala11games.com/api/football/game-list");
+       
+        $retry = 3;
+        $success = false;
+        $response = null;
+        while ($retry > 0 && !$success) {
+            $result = curl_exec($ch);
+            if ($result === false) {
+                $retry--;
+            } else {
+                $success = true;
+                $response = json_decode($result, true);
+            }
+        }
+       
         // Execute
-        $result = curl_exec($ch);
-        // Will dump a beauty json <3
-        $response = json_decode($result, true);
+        // $result = curl_exec($ch);
+        // // Will dump a beauty json <3
+        // $response = json_decode($result, true);
 
         curl_close($ch);
 
@@ -169,10 +183,23 @@ class HomeController extends Controller
         curl_setopt($chr, CURLOPT_RETURNTRANSFER, true);
         // Set the url
         curl_setopt($chr, CURLOPT_URL, "https://ujala11games.com/api/get-all-games-list");
+        
+        $retry1 = 3;
+        $success1 = false;
+        $allGames = null;
+        while ($retry1 > 0 && !$success1) {
+            $allGameresult = curl_exec($chr);
+            if ($allGameresult === false) {
+                $retry1--;
+            } else {
+                $success1 = true;
+                $allGames = json_decode($allGameresult, true);
+            }
+        }
         // Execute
-        $allGameresult = curl_exec($chr);
-        // Will dump a beauty json <3
-        $allGames = json_decode($allGameresult, true);
+        // $allGameresult = curl_exec($chr);
+        // // Will dump a beauty json <3
+        // $allGames = json_decode($allGameresult, true);
 
         curl_close($chr);
         // dd($response);
@@ -305,10 +332,23 @@ class HomeController extends Controller
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         // Set the url
         curl_setopt($ch, CURLOPT_URL, "https://ujala11games.com/api/tennis/game-list");
+      
+        $retry = 3;
+        $success = false;
+        $response = null;
+        while ($retry > 0 && !$success) {
+            $result = curl_exec($ch);
+            if ($result === false) {
+                $retry--;
+            } else {
+                $success = true;
+                $response = json_decode($result, true);
+            }
+        }
         // Execute
-        $result = curl_exec($ch);
-        // Will dump a beauty json <3
-        $response = json_decode($result, true);
+        // $result = curl_exec($ch);
+        // // Will dump a beauty json <3
+        // $response = json_decode($result, true);
 
         curl_close($ch);
 
@@ -320,10 +360,23 @@ class HomeController extends Controller
         curl_setopt($chr, CURLOPT_RETURNTRANSFER, true);
         // Set the url
         curl_setopt($chr, CURLOPT_URL, "https://ujala11games.com/api/get-all-games-list");
+      
+        $retry1 = 3;
+        $success1 = false;
+        $allGames = null;
+        while ($retry1 > 0 && !$success1) {
+            $allGameresult = curl_exec($chr);
+            if ($allGameresult === false) {
+                $retry1--;
+            } else {
+                $success1 = true;
+                $allGames = json_decode($allGameresult, true);
+            }
+        }
         // Execute
-        $allGameresult = curl_exec($chr);
-        // Will dump a beauty json <3
-        $allGames = json_decode($allGameresult, true);
+        // $allGameresult = curl_exec($chr);
+        // // Will dump a beauty json <3
+        // $allGames = json_decode($allGameresult, true);
 
         curl_close($chr);
 

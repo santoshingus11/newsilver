@@ -88,7 +88,7 @@ class QueryHelper
     }  
     public static function total_bets($id)
     {
-       
+        
       $GreyhoundRacingPlaceBet = GreyhoundRacingPlaceBet::where('user_id',$id)->where('bet_result',Null)->sum('bet_stake');
       $HorseRacingPlaceBet = HorseRacingPlaceBet::where('user_id',$id)->where('bet_result',Null)->sum('bet_stake');
       $TennisPlaceBet = TennisPlaceBet::where('user_id',$id)->where('bet_result',Null)->sum('bet_stake');

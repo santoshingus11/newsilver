@@ -23,7 +23,7 @@
 </style>
 @endsection
 @section('content')
-<input type="hidden" id="channel_id" name="channel_id" value="{{$game_single['channel_id']}}">
+<input type="hidden" id="channel_id" name="channel_id" value="{{$game_single['channel_id'] ?? ''}}">
 <div class="col-md-10 pxxs-0">
   <app-sport-detail>
 
@@ -42,78 +42,77 @@
           <?php } ?>
 
           <style>
-              .scoreboard {
-                background-color: #004080;
-                /* Dark blue background */
-                color: white;
-                padding: 10px;
-                border-radius: 5px;
-                margin-top: 20px;
-              }
-
-              .background {
-                background-image: url('{{url("/public/scorecard-bg.png")}}');
-                /* Replace with your background image URL */
-                background-size: cover;
-                background-repeat: no-repeat;
-                background-position: center;
+              .container {
+                background-color: #2a2a3c;
                 padding: 20px;
-                border-radius: 5px;
+                border-radius: 10px;
+                text-align: center;
+                color: white;
               }
 
-              .match-info,
-              .score-info,
-              .target-info,
-              .commentary-info {
-                background-color: rgba(0, 0, 0, 0.5);
-                /* Semi-transparent black */
-                padding: 10px;
-                margin-top: 5px;
-                border-radius: 5px;
+              .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
               }
 
-              .badge-custom {
-                padding: 10px;
-                font-size: 1.2rem;
+              .header .title {
+                font-size: 18px;
               }
 
-              .badge-4 {
-                background-color: blue;
+              .header .date {
+                font-size: 14px;
+                color: #bfbfbf;
               }
 
-              .badge-1 {
-                background-color: green;
-              }
-
-              .badge-0 {
-                background-color: grey;
-              }
-
-              .content {
+              .score {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
               }
 
-              .commentary-info {
+              .team {
                 display: flex;
-                justify-content: space-between;
                 align-items: center;
+              }
+
+              .team img {
+                width: 30px;
+                height: 30px;
+                margin-right: 10px;
+              }
+
+              .team .name {
+                font-size: 16px;
+              }
+
+              .goal {
+                font-size: 14px;
+                color: #bfbfbf;
+              }
+
+              .result {
+                font-size: 24px;
+                font-weight: bold;
+              }
+
+              .half-time {
+                font-size: 12px;
+                color: #bfbfbf;
+                margin-top: 10px;
               }
             </style>
-             <?php if(!empty($game_single['channel_id'])) { ?>
-            <div class="scoreboard">
-              <div class="background">
-                <div class="content">
-                  <h2><span> {{$game_single['game_title']}} </span><span>{{$game_single['run_date_time']}}
-                    </span>
-                  </h2>
+          <?php if (!empty($game_single['channel_id'])) { ?>
+            <div class="container">
+                <div class="header">
+                  <div class="title">{{$game_single['game_title'] ?? ""}}</div>
+                  <div class="date">{{$game_single['run_date_time'] ?? ""}}</div>
                 </div>
-               <div id="scoreboard"></div>
-
+               <hr>
+                <div id="scoreboard"></div>
               </div>
-            </div>
-            <?php } ?>
+          <?php } ?>
           <h2 class="event-title">{{$game_single['game_title']}}</h2>
           <div id="scoreCard" class="multi-collapse">
             <div class="col-12 px-0"><app-score-card><!----></app-score-card></div>
@@ -129,11 +128,11 @@
                     <div class="Lay_oddsbox bhav_box">Lay</div>
                   </div>
                 </div>
-            
+
                 <div class="randerScore mainScore " id="matchoddclass">
-                
+
                 </div>
-            
+
               </div><!----><!----><!----><!---->
             </div>
             <div><!----><!----><!----><!----></div><!----><!---->
@@ -401,19 +400,17 @@
         success: function(data) {
           console.log(data);
           var score = `
-             <div class="commentary-info">
-                  <div>${data.score.tennis.team_name_a} :</div>
-                  <div id="score_data">
-                    ${data.score.tennis.score_a}
+              <div class="score">
+                  <div class="team">
+                   <img src="https://newsilver.art/public/highlight.b1ac6c3e.png" alt="Al Mokawloon">
+                    <div class="name">${data.score.tennis.team_name_a}</div>
                   </div>
+                  <div class="result"><span></span> ${data.score.tennis.score_a} : ${data.score.tennis.score_b}</div>
+                  <div class="team">
+                  <img src="https://newsilver.art/public/highlight.b1ac6c3e.png" alt="Al Mokawloon">
+                    <div class="name">${data.score.tennis.team_name_b}</div>
+                   </div>
                 </div>
-                <div class="commentary-info">
-                  <div>${data.score.tennis.team_name_b} :</div>
-                  <div id="score_data">
-                    ${data.score.tennis.score_b}
-                  </div>
-                </div>
-                  <span class="badge badge-custom badge-0"></span>
           `;
           $('#scoreboard').html(score);
         },
@@ -434,17 +431,17 @@
 </script>
 
 <script>
-      function updateProfit(amnt) {
-        var odds = parseFloat($("#bet_input_stake").val()) || 1;
-        var profit = amnt * odds;
-        $(".profit_div").text(profit.toFixed(2)); // Format profit to 2 decimal places
-        $("#bet_profit").val(profit);
-        $('.betplace-btn').prop("disabled", false);
-    }
-    $("#add_input").on('input', function() {
-     
-        var amnt = parseFloat($(this).val()) || 0;
-        updateProfit(amnt);
-    });
+  function updateProfit(amnt) {
+    var odds = parseFloat($("#bet_input_stake").val()) || 1;
+    var profit = amnt * odds;
+    $(".profit_div").text(profit.toFixed(2)); // Format profit to 2 decimal places
+    $("#bet_profit").val(profit);
+    $('.betplace-btn').prop("disabled", false);
+  }
+  $("#add_input").on('input', function() {
+
+    var amnt = parseFloat($(this).val()) || 0;
+    updateProfit(amnt);
+  });
 </script>
 @endsection

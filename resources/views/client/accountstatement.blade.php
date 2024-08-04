@@ -52,7 +52,7 @@
                     <li class="total-pnl">
                       <p class="m-b-0"><span>Total P&amp;L : </span> <span class="positive">0</span></p>
                     </li>
-                  </ul>
+                  </ul> 
                 </div>
                 <div class="table-responsive">
                   <table class="table profit-loss-table">

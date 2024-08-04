@@ -10111,7 +10111,7 @@
               } else {
                 tied_match += `<div style="background:white !important;" class="back_oddsbox bhav_box"></div>`;
               }
-
+ 
               if (r.lay_status == 1) {
                 tied_match += `<div class="Lay_oddsbox bhav_box">
                     <strong class="odds ng-binding bet_text" 

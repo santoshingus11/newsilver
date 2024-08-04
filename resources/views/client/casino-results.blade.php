@@ -18,7 +18,7 @@
 
 
 <section id="home-pages" class="home_pages">
-  <div class="banner">
+  <div class="banner"> 
     <div class="container">
       <div class="row">
         <div class="col-lg-2 col-md-12 col-sm-12">

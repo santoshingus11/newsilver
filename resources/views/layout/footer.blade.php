@@ -8,4 +8,4 @@
               data-toggle="modal" data-target="#rulesModal">Rules &amp; Regulations</a> ©
             Copyright 2020. All Rights Reserved. </p>
         </footer>
-      </app-footer>
+      </app-footer> 

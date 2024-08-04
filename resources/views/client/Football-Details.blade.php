@@ -531,7 +531,7 @@
       });
 
     }
-
+ 
     function updateCricketDetails(data) {
 
       // // Update the HTML with new data (example below, adapt as needed)

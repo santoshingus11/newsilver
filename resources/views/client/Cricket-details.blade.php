@@ -10111,7 +10111,7 @@
               } else {
                 tied_match += `<div style="background:white !important;" class="back_oddsbox bhav_box"></div>`;
               }
- 
+
               if (r.lay_status == 1) {
                 tied_match += `<div class="Lay_oddsbox bhav_box">
                     <strong class="odds ng-binding bet_text" 
@@ -10154,15 +10154,15 @@
 
             var target = '';
             target = `
-    <span class="badge badge-custom badge-0">${teamNameA} : ${displayText}</span>
-`;
+                <span class="badge badge-custom badge-0">${teamNameA} : ${displayText}</span>
+            `;
 
             $('#target').html(target);
 
             var nowscore = '';
             nowscore = `
-  <span class="badge badge-custom badge-1"> Score </span>  <span class="badge badge-custom badge-0">${data.score.cricket_detail.play_score} / ${data.score.cricket_detail.play_wicket}</span> <span class="badge badge-custom badge-1"> Over Completed </span> <span class="badge badge-custom badge-0"> ${data.score.cricket_detail.play_over} </span>
-`;
+              <span class="badge badge-custom badge-1"> Score </span>  <span class="badge badge-custom badge-0">${data.score.cricket_detail.play_score} / ${data.score.cricket_detail.play_wicket}</span> <span class="badge badge-custom badge-1"> Over Completed </span> <span class="badge badge-custom badge-0"> ${data.score.cricket_detail.play_over} </span>
+            `;
 
             $('#nowscore').html(nowscore);
 

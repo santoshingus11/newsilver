@@ -318,7 +318,7 @@ class QueryHelper
         {
         
          $checkadmin=Admin::where('id',Auth::guard('agent')->user()->admin_id)->first();
-         dd($checkadmin);
+     
          $data=$data->where('admin_id',$checkadmin->id);
         }else{
 

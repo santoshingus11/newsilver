@@ -18,6 +18,8 @@ use App\Http\Controllers\admin\CashbankingController;
 use App\Http\Controllers\admin\ExtraController;
 use App\Http\Controllers\admin\MarketSettingsController;
 use App\Http\Controllers\admin\PlayerLogReportController;
+use App\Http\Controllers\DepositController;
+use App\Http\Controllers\WithdrawController;
 
 /*
 |--------------------------------------------------------------------------
@@ -155,6 +157,12 @@ Route::middleware('client.login.check')->group(function () {
     Route::get('transferstatement',[HomeController::class,'transferstatement'])->name('transferstatement');
     Route::get('changepassword',[HomeController::class,'changepassword'])->name('changepassword');
     
+    Route::get('deposit',[DepositController::class,'create_deposit'])->name('deposit.create');
+    Route::post('submit-deposit',[DepositController::class,'submit_deposit'])->name('deposit.submit');
+
+    Route::get('withdraw',[WithdrawController::class,'create_withdraw'])->name('withdraw.create');
+    Route::post('submit-withdraw',[WithdrawController::class,'submit_withdraw'])->name('withdraw.submit');
+
 });
 Route::group(['prefix' => 'admin'], function () {
 
@@ -326,6 +334,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('update-status',[AdminUserController::class,'update_whitelevel_status'])->name('update-whitelevel-status');
     Route::get('update-user-password',[AdminUserController::class,'update_user_password'])->name('update-user-password');
     Route::post('logout-all',[AdminController::class,'logout_all'])->name('logout-all-user');
+
+  
 });
 
 });

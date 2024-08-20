@@ -10,32 +10,53 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
+
 class DepositController extends Controller
 {
-    public function create_deposit() {
+    public function create_deposit()
+    {
         $user = Auth::guard('client')->user();
-        // $bank = TransferDetail::where('transfer_name','bank')->first();
+        $ch = curl_init();
+        // Disable SSL verification
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        // Will return the response, if false it print the response
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // Set the url
+        curl_setopt($ch, CURLOPT_URL, "https://tigerex.art/public/Bank_details");
+        // Execute
+        // Further increase timeout settings
+        curl_setopt($ch, CURLOPT_TIMEOUT, 60); // Wait up to 60 seconds for a response
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30); // Wait up to 30 seconds to connect
+        $result = curl_exec($ch);
+        // Will dump a beauty json <3
+        $bank = json_decode($result, true);
+
+        curl_close($ch);
+     
         // $bonuses = Bonus::where('status',1)->get();
         return view('client.bank.deposit_create_bank', get_defined_vars());
     }
 
-    public function submit_deposit(Request $request) {
-        $validator = Validator::make($request->all(),[
+    public function submit_deposit(Request $request)
+    {
+       
+        $validator = Validator::make($request->all(), [
             'amount' => 'required',
             'username' => 'required',
             'email' => 'required',
+            'selected_transfer_id' => 'required',
             'image_name' => 'required|mimes:jpeg,png,jpg'
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        
-      
+
+
         $deposit = new Deposit();
-        if(!empty($bonus)){
+        if (!empty($bonus)) {
             $deposit->amount = $request->amount + $bonus->bonus_amount;
-        }else{
+        } else {
             $deposit->amount = $request->amount;
         }
         $deposit->bonus_code = $request->bonus_code ?? "";
@@ -43,11 +64,12 @@ class DepositController extends Controller
         $deposit->username = Auth::guard('client')->user()->username;
         $deposit->email = $request->email;
         $deposit->status = 'pending';
+        $deposit->transfer_details_id = $request->selected_transfer_id;
         $deposit->user_id = Auth::guard('client')->user()->id;
 
         if ($request->hasFile('image_name')) {
             $image       = $request->file('image_name');
-            $filename    = time()."_".$image->getClientOriginalName();
+            $filename    = time() . "_" . $image->getClientOriginalName();
             // $image_resize = Image::make($image->getRealPath());
             // $image_resize->save(public_path('/assets/images/Deposit/' .$filename));
             $image->move(public_path('/assets/images/Deposit/'), $filename);
@@ -59,29 +81,31 @@ class DepositController extends Controller
         return redirect()->route('deposit.create')->with('message', 'Deposit completed successfully');
     }
 
-    public function create_deposit_paytm() {
+    public function create_deposit_paytm()
+    {
         $user = Auth::guard('client')->user();
-        $paytm = TransferDetail::where('transfer_name','paytm')->first();
-        $bonuses = Bonus::where('status',1)->get();
-        return view('client.deposit_create_paytm', compact('user','paytm','bonuses'));
+        $paytm = TransferDetail::where('transfer_name', 'paytm')->first();
+        $bonuses = Bonus::where('status', 1)->get();
+        return view('client.deposit_create_paytm', compact('user', 'paytm', 'bonuses'));
     }
 
-    public function submit_deposit_paytm(Request $request) {
-        $validator = Validator::make($request->all(),[
+    public function submit_deposit_paytm(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
             'amount' => 'required',
             'image_name' => 'required|mimes:jpeg,png,jpg'
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        $bonus = Bonus::where('bonus_code',$request->bonus_code)->first();
-        $tranfer_acc_detail = TransferDetail::where('transfer_name','paytm')->first();
+        $bonus = Bonus::where('bonus_code', $request->bonus_code)->first();
+        $tranfer_acc_detail = TransferDetail::where('transfer_name', 'paytm')->first();
 
         $deposit = new Deposit();
-        if(!empty($bonus)){
+        if (!empty($bonus)) {
             $deposit->amount = $request->amount + $bonus->bonus_amount;
-        }else{
+        } else {
             $deposit->amount = $request->amount;
         }
         $deposit->bonus_code = $request->bonus_code;
@@ -94,9 +118,9 @@ class DepositController extends Controller
 
         if ($request->hasFile('image_name')) {
             $image       = $request->file('image_name');
-            $filename    = time()."_".$image->getClientOriginalName();
+            $filename    = time() . "_" . $image->getClientOriginalName();
             $image_resize = Image::make($image->getRealPath());
-            $image_resize->save(public_path('/frontend/assets/images/Deposit/' .$filename));
+            $image_resize->save(public_path('/frontend/assets/images/Deposit/' . $filename));
 
             $deposit->image_name = $filename;
         }
@@ -106,29 +130,31 @@ class DepositController extends Controller
         return redirect()->route('deposit.create.paytm')->with('message', 'Deposit completed successfully');
     }
 
-    public function create_deposit_upi() {
+    public function create_deposit_upi()
+    {
         $user = Auth::guard('client')->user();
-        $upi = TransferDetail::where('transfer_name','upi')->first();
-        $bonuses = Bonus::where('status',1)->get();
-        return view('client.deposit_create_upi', compact('user','upi','bonuses'));
+        $upi = TransferDetail::where('transfer_name', 'upi')->first();
+        $bonuses = Bonus::where('status', 1)->get();
+        return view('client.deposit_create_upi', compact('user', 'upi', 'bonuses'));
     }
 
-    public function submit_deposit_upi(Request $request) {
-        $validator = Validator::make($request->all(),[
+    public function submit_deposit_upi(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
             'amount' => 'required',
             'image_name' => 'required|mimes:jpeg,png,jpg'
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        $bonus = Bonus::where('bonus_code',$request->bonus_code)->first();
-        $tranfer_acc_detail = TransferDetail::where('transfer_name','upi')->first();
+        $bonus = Bonus::where('bonus_code', $request->bonus_code)->first();
+        $tranfer_acc_detail = TransferDetail::where('transfer_name', 'upi')->first();
 
         $deposit = new Deposit();
-        if(!empty($bonus)){
+        if (!empty($bonus)) {
             $deposit->amount = $request->amount + $bonus->bonus_amount;
-        }else{
+        } else {
             $deposit->amount = $request->amount;
         }
         $deposit->bonus_code = $request->bonus_code;
@@ -141,9 +167,9 @@ class DepositController extends Controller
 
         if ($request->hasFile('image_name')) {
             $image       = $request->file('image_name');
-            $filename    = time()."_".$image->getClientOriginalName();
+            $filename    = time() . "_" . $image->getClientOriginalName();
             $image_resize = Image::make($image->getRealPath());
-            $image_resize->save(public_path('/frontend/assets/images/Deposit/' .$filename));
+            $image_resize->save(public_path('/frontend/assets/images/Deposit/' . $filename));
 
             $deposit->image_name = $filename;
         }
@@ -153,29 +179,31 @@ class DepositController extends Controller
         return redirect()->route('deposit.create.upi')->with('message', 'Deposit completed successfully');
     }
 
-    public function create_deposit_qrcode() {
+    public function create_deposit_qrcode()
+    {
         $user = Auth::guard('client')->user();
-        $qrcode = TransferDetail::where('transfer_name','qrcode')->first();
-        $bonuses = Bonus::where('status',1)->get();
-        return view('client.deposit_create_qrcode', compact('user','qrcode','bonuses'));
+        $qrcode = TransferDetail::where('transfer_name', 'qrcode')->first();
+        $bonuses = Bonus::where('status', 1)->get();
+        return view('client.deposit_create_qrcode', compact('user', 'qrcode', 'bonuses'));
     }
 
-    public function submit_deposit_qrcode(Request $request) {
-        $validator = Validator::make($request->all(),[
+    public function submit_deposit_qrcode(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
             'amount' => 'required',
             'image_name' => 'required|mimes:jpeg,png,jpg'
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        $bonus = Bonus::where('bonus_code',$request->bonus_code)->first();
-        $tranfer_acc_detail = TransferDetail::where('transfer_name','qrcode')->first();
+        $bonus = Bonus::where('bonus_code', $request->bonus_code)->first();
+        $tranfer_acc_detail = TransferDetail::where('transfer_name', 'qrcode')->first();
 
         $deposit = new Deposit();
-        if(!empty($bonus)){
+        if (!empty($bonus)) {
             $deposit->amount = $request->amount + $bonus->bonus_amount;
-        }else{
+        } else {
             $deposit->amount = $request->amount;
         }
         $deposit->bonus_code = $request->bonus_code;
@@ -188,9 +216,9 @@ class DepositController extends Controller
 
         if ($request->hasFile('image_name')) {
             $image       = $request->file('image_name');
-            $filename    = time()."_".$image->getClientOriginalName();
+            $filename    = time() . "_" . $image->getClientOriginalName();
             $image_resize = Image::make($image->getRealPath());
-            $image_resize->save(public_path('/frontend/assets/images/Deposit/' .$filename));
+            $image_resize->save(public_path('/frontend/assets/images/Deposit/' . $filename));
 
             $deposit->image_name = $filename;
         }
@@ -199,31 +227,33 @@ class DepositController extends Controller
 
         return redirect()->route('deposit.create.qrcode')->with('message', 'Deposit completed successfully');
     }
-    
+
     // bitcoin deposit
-    public function create_deposit_bitcoin() {
+    public function create_deposit_bitcoin()
+    {
         $user = Auth::guard('client')->user();
-        $bitcoin = TransferDetail::where('transfer_name','bitcoin')->first();
-        $bonuses = Bonus::where('status',1)->get();
-        return view('client.deposit_create_bitcoin', compact('user','bitcoin','bonuses'));
+        $bitcoin = TransferDetail::where('transfer_name', 'bitcoin')->first();
+        $bonuses = Bonus::where('status', 1)->get();
+        return view('client.deposit_create_bitcoin', compact('user', 'bitcoin', 'bonuses'));
     }
 
-    public function submit_deposit_bitcoin(Request $request) {
-        $validator = Validator::make($request->all(),[
+    public function submit_deposit_bitcoin(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
             'amount' => 'required',
             'image_name' => 'required|mimes:jpeg,png,jpg'
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        $bonus = Bonus::where('bonus_code',$request->bonus_code)->first();
-        $tranfer_acc_detail = TransferDetail::where('transfer_name','bitcoin')->first();
+        $bonus = Bonus::where('bonus_code', $request->bonus_code)->first();
+        $tranfer_acc_detail = TransferDetail::where('transfer_name', 'bitcoin')->first();
 
         $deposit = new Deposit();
-        if(!empty($bonus)){
+        if (!empty($bonus)) {
             $deposit->amount = $request->amount + $bonus->bonus_amount;
-        }else{
+        } else {
             $deposit->amount = $request->amount;
         }
         $deposit->bonus_code = $request->bonus_code;
@@ -236,9 +266,9 @@ class DepositController extends Controller
 
         if ($request->hasFile('image_name')) {
             $image       = $request->file('image_name');
-            $filename    = time()."_".$image->getClientOriginalName();
+            $filename    = time() . "_" . $image->getClientOriginalName();
             $image_resize = Image::make($image->getRealPath());
-            $image_resize->save(public_path('/frontend/assets/images/Deposit/' .$filename));
+            $image_resize->save(public_path('/frontend/assets/images/Deposit/' . $filename));
 
             $deposit->image_name = $filename;
         }
@@ -247,31 +277,33 @@ class DepositController extends Controller
 
         return redirect()->route('deposit.create.bitcoin')->with('message', 'Deposit completed successfully');
     }
-    
+
     // tron deposit
-    public function create_deposit_tron() {
+    public function create_deposit_tron()
+    {
         $user = Auth::guard('client')->user();
-        $tron = TransferDetail::where('transfer_name','tron')->first();
-        $bonuses = Bonus::where('status',1)->get();
-        return view('client.deposit_create_tron', compact('user','tron','bonuses'));
+        $tron = TransferDetail::where('transfer_name', 'tron')->first();
+        $bonuses = Bonus::where('status', 1)->get();
+        return view('client.deposit_create_tron', compact('user', 'tron', 'bonuses'));
     }
 
-    public function submit_deposit_tron(Request $request) {
-        $validator = Validator::make($request->all(),[
+    public function submit_deposit_tron(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
             'amount' => 'required',
             'image_name' => 'required|mimes:jpeg,png,jpg'
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        $bonus = Bonus::where('bonus_code',$request->bonus_code)->first();
-        $tranfer_acc_detail = TransferDetail::where('transfer_name','tron')->first();
+        $bonus = Bonus::where('bonus_code', $request->bonus_code)->first();
+        $tranfer_acc_detail = TransferDetail::where('transfer_name', 'tron')->first();
 
         $deposit = new Deposit();
-        if(!empty($bonus)){
+        if (!empty($bonus)) {
             $deposit->amount = $request->amount + $bonus->bonus_amount;
-        }else{
+        } else {
             $deposit->amount = $request->amount;
         }
         $deposit->bonus_code = $request->bonus_code;
@@ -284,9 +316,9 @@ class DepositController extends Controller
 
         if ($request->hasFile('image_name')) {
             $image       = $request->file('image_name');
-            $filename    = time()."_".$image->getClientOriginalName();
+            $filename    = time() . "_" . $image->getClientOriginalName();
             $image_resize = Image::make($image->getRealPath());
-            $image_resize->save(public_path('/frontend/assets/images/Deposit/' .$filename));
+            $image_resize->save(public_path('/frontend/assets/images/Deposit/' . $filename));
 
             $deposit->image_name = $filename;
         }
@@ -297,29 +329,31 @@ class DepositController extends Controller
     }
 
     // usdtrc20 deposit
-    public function create_deposit_usdtrc20() {
+    public function create_deposit_usdtrc20()
+    {
         $user = Auth::guard('client')->user();
-        $usdtrc20 = TransferDetail::where('transfer_name','usdtrc20')->first();
-        $bonuses = Bonus::where('status',1)->get();
-        return view('client.deposit_create_usdtrc20', compact('user','usdtrc20','bonuses'));
+        $usdtrc20 = TransferDetail::where('transfer_name', 'usdtrc20')->first();
+        $bonuses = Bonus::where('status', 1)->get();
+        return view('client.deposit_create_usdtrc20', compact('user', 'usdtrc20', 'bonuses'));
     }
 
-    public function submit_deposit_usdtrc20(Request $request) {
-        $validator = Validator::make($request->all(),[
+    public function submit_deposit_usdtrc20(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
             'amount' => 'required',
             'image_name' => 'required|mimes:jpeg,png,jpg'
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        $bonus = Bonus::where('bonus_code',$request->bonus_code)->first();
-        $tranfer_acc_detail = TransferDetail::where('transfer_name','usdtrc20')->first();
+        $bonus = Bonus::where('bonus_code', $request->bonus_code)->first();
+        $tranfer_acc_detail = TransferDetail::where('transfer_name', 'usdtrc20')->first();
 
         $deposit = new Deposit();
-        if(!empty($bonus)){
+        if (!empty($bonus)) {
             $deposit->amount = $request->amount + $bonus->bonus_amount;
-        }else{
+        } else {
             $deposit->amount = $request->amount;
         }
         $deposit->bonus_code = $request->bonus_code;
@@ -332,9 +366,9 @@ class DepositController extends Controller
 
         if ($request->hasFile('image_name')) {
             $image       = $request->file('image_name');
-            $filename    = time()."_".$image->getClientOriginalName();
+            $filename    = time() . "_" . $image->getClientOriginalName();
             $image_resize = Image::make($image->getRealPath());
-            $image_resize->save(public_path('/frontend/assets/images/Deposit/' .$filename));
+            $image_resize->save(public_path('/frontend/assets/images/Deposit/' . $filename));
 
             $deposit->image_name = $filename;
         }
@@ -343,10 +377,11 @@ class DepositController extends Controller
 
         return redirect()->route('deposit.create.usdtrc20')->with('message', 'Deposit completed successfully');
     }
-    public function deposit_list() {
+    public function deposit_list()
+    {
         $id = Auth::guard('client')->user()->id;
         $deposits = Deposit::where('user_id', $id)->paginate(10);
 
-        return view('client.deposit_list',compact('deposits'));
+        return view('client.deposit_list', compact('deposits'));
     }
 }

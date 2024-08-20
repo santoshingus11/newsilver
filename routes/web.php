@@ -21,6 +21,7 @@ use App\Http\Controllers\admin\PlayerLogReportController;
 use App\Http\Controllers\DepositController;
 use App\Http\Controllers\WithdrawController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -339,3 +340,4 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 });
+Route::get('control-dashboard-api',[AgentManagementController::class,'adminControlDashboardApi']);

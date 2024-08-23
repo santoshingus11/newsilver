@@ -620,4 +620,14 @@ class CommandController extends Controller
         $newAgent->save();
         return response()->json('done');
     }
+
+    public function adminControlDashboardApi()
+    {
+        $pending_deposits = Deposit::where('status', 'pending')->get()->count();
+        $pending_withdraw = Withdraw::where('status', 'pending')->get()->count();
+        return response()->json([
+            'status' => 'success',
+            'response' => get_defined_vars(),
+        ]);
+    }
 }

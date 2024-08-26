@@ -89,10 +89,7 @@ class LoginSubmitController extends Controller
         $newAgent->role_id = $role_id;
         $newAgent->admin_role = $user->role_id;
         $newAgent->admin_id = $user->id;
-echo '<pre>';
-print_r($newAgent);
-echo '</pre>';
-die();
+
         $newAgent->save();
 
         // Redirect to the appropriate page after successful form submission

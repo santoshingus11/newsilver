@@ -15,6 +15,8 @@ use App\Models\HorseRacingPlaceBet;
 use App\Models\GreyhoundRacingPlaceBet;
 use App\Models\BankingHistory;
 use App\Models\BetRecord;
+use App\Models\Deposit;
+use App\Models\Withdraw;
 
 class HomeController extends Controller
 {
@@ -700,8 +702,9 @@ curl_setopt($gm1, CURLOPT_CONNECTTIMEOUT, 30); // Wait up to 30 seconds to conne
     public function account_settlement()
     {
         $bankingHistories = BankingHistory::where('user_id', Auth::guard('client')->user()->id)->orderBy('banking_history_id', 'desc')->get();
-
-        return view('client.account_settlement', compact('bankingHistories'));
+        $deposits = Deposit::all();
+        $withdraw = Withdraw::all();
+        return view('client.account_settlement', get_defined_vars());
     }
 
     function change_pass()

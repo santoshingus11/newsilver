@@ -1,5 +1,3 @@
-
-
 @extends('web_layout.app')
 @section('style')
 <style>
@@ -106,6 +104,9 @@
                   <div class="d-flex flex-column h-full align-items-center justify-content-center"><img class="img-fluid" src="{{asset('/')}}/assets/img/icons/98788.png"><!----><b>Roulette</b></div><!----><!---->
                 </a></li><!---->
             </ul>
+            @if(empty($response))
+            <div id="game-list-container"></div>
+            @endif
             @if(!empty($response))
             @foreach($response as $r)
             <div class="tab-content">
@@ -129,7 +130,7 @@
                       </a><!----></div>
 
                     <div class="col-md-1 col-lg-2 col-6 px-lg-0">
-                      <div class="game-icons"><span class="game-icon"><span @if($r['channel_id']!="") class="active" @endif></span><!----></span><span class="game-icon"><i class="fa fa-tv v-m icon-tv cursor loginButton"></i><!----></span><span class="game-icon"><img src="{{asset('/')}}/assets/img/icons/ic_fancy.png" class="fancy-icon cursor"><!----></span><span class="game-icon"><img src="{{asset('/')}}/assets/img/icons/ic_bm.png" class="bookmaker-icon cursor"><!----></span></div><!---->
+                      <div class="game-icons"><span class="game-icon"><span @if($r['channel_id']!="" ) class="active" @endif></span><!----></span><span class="game-icon"><i class="fa fa-tv v-m icon-tv cursor loginButton"></i><!----></span><span class="game-icon"><img src="{{asset('/')}}/assets/img/icons/ic_fancy.png" class="fancy-icon cursor"><!----></span><span class="game-icon"><img src="{{asset('/')}}/assets/img/icons/ic_bm.png" class="bookmaker-icon cursor"><!----></span></div><!---->
                     </div>
                     <div class="col-md-4 col-12 d-sm-none d-block th-head text-center"><span>1</span><span>X</span><span>2</span></div><!---->
                     <div class="col-md-7 col-lg-5 col-12 pr-xl-0">
@@ -174,7 +175,7 @@
     <div class="dash_casino">
       <h2>Our Casino</h2>
       <div class="grid-container">
-      @if(!empty($data['liveGames']))
+        @if(!empty($data['liveGames']))
         @foreach($data['liveGames'] as $d)
         <a href="/slot/game/lounch/{{$d->id}}">
           <div class="d-inline-block casinoicons"><img class="img-fluid" src="{{$d->img}}">
@@ -201,6 +202,108 @@
 </script>
 <script>
   /* Script Goes Here */
+
+  /* Script Goes Here */
+</script>
+<script>
+  /* Script Goes Here */
+  $(document).ready(function() {
+    // Function to fetch data
+    function fetchGameData() {
+      $.ajax({
+        url: "{{ route('client-home') }}", // Your route here
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+          // Clear the container before appending new data
+          $('#game-list-container').empty();
+
+          // Iterate over the response data and append HTML
+          if (data.response && data.response.length > 0) {
+            data.response.forEach(function(r) {
+              // Build the HTML structure
+              let gameHtml = `
+                            <div class="tab-content">
+                                <tab role="tabpanel" class="tab-pane active">
+                                    <div>
+                                        <div class="row th-head">
+                                            <div class="col-lg-7 col-md-5 col-6">
+                                                <p>Games</p>
+                                            </div>
+                                            <div class="col-lg-5 col-md-7 col-12 text-center px-xl-0">
+                                                <span>1</span><span>X</span><span>2</span>
+                                            </div>
+                                        </div>
+                                        <div class="row td-body" tabindex="0">
+                                            <div class="col-md-4 col-lg-5 col-6 cursor">
+                                                <a href="{{ route('Cricket-details', '') }}/${r.id}">
+                                                    <p>${r.game_title}<span>&nbsp;/&nbsp;</span>
+                                                    <b>${convertToIST(r.datetimeGMT)} (IST)</b></p>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-1 col-lg-2 col-6 px-lg-0">
+                                                <div class="game-icons">
+                                                    <span class="game-icon">
+                                                        <span class="${r.channel_id ? 'active' : ''}"></span>
+                                                    </span>
+                                                    <span class="game-icon">
+                                                        <i class="fa fa-tv v-m icon-tv cursor loginButton"></i>
+                                                    </span>
+                                                    <span class="game-icon">
+                                                        <img src="{{ asset('/') }}/assets/img/icons/ic_fancy.png" class="fancy-icon cursor">
+                                                    </span>
+                                                    <span class="game-icon">
+                                                        <img src="{{ asset('/') }}/assets/img/icons/ic_bm.png" class="bookmaker-icon cursor">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-7 col-lg-5 col-12 pr-xl-0">
+                                                <a href="{{ route('Cricket-details', '') }}/${r.id}">
+                                                    <div class="list-event-odds">
+                                                        <div class="btn-grp-cs">
+                                                            <button class="back"><span class="odd">1.99</span></button>
+                                                            <button class="lay"><span class="odd">2</span></button>
+                                                        </div>
+                                                        <div class="btn-grp-cs">
+                                                            <button class="back"><span class="odd">-</span></button>
+                                                            <button class="lay"><span class="odd">-</span></button>
+                                                        </div>
+                                                        <div class="btn-grp-cs">
+                                                            <button class="back"><span class="odd">2</span></button>
+                                                            <button class="lay"><span class="odd">2.02</span></button>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </tab>
+                            </div>
+                        `;
+              // Append each game HTML to the container
+              $('#game-list-container').append(gameHtml);
+            });
+          }
+        },
+        error: function() {
+          console.error('Failed to fetch game data.');
+        }
+      });
+    }
+
+    // Convert date from GMT to IST
+    function convertToIST(gmtDate) {
+      let date = new Date(gmtDate + 'Z'); // Append 'Z' to make it UTC
+      return date.toLocaleString('en-IN', {
+        timeZone: 'Asia/Kolkata',
+        hour12: false
+      });
+    }
+
+    // Fetch data when the document is ready
+    fetchGameData();
+    setInterval(fetchGameData, 5000);
+  });
 
   /* Script Goes Here */
 </script>

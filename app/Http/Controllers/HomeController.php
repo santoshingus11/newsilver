@@ -155,7 +155,7 @@ class HomeController extends Controller
 
 
 
-    public function foot_ball()
+    public function foot_ball(Request $request)
     {
 
         $ch = curl_init();
@@ -218,7 +218,13 @@ class HomeController extends Controller
 
         curl_close($chr);
         // dd($response);
-
+        if ($request->ajax()) {
+            return response()->json([
+                'response' => $response,
+                'allGames' => $allGames,
+                // 'data' => $data,
+            ]);
+        }
         return view('client.football', compact('response', 'allGames'));
     }
 
@@ -338,7 +344,7 @@ class HomeController extends Controller
 
 
 
-    public function ten_nis()
+    public function ten_nis(Request $request)
     {
         $ch = curl_init();
         // Disable SSL verification
@@ -396,7 +402,13 @@ class HomeController extends Controller
         // $allGames = json_decode($allGameresult, true);
 
         curl_close($chr);
-
+        if ($request->ajax()) {
+            return response()->json([
+                'response' => $response,
+                'allGames' => $allGames,
+                // 'data' => $data,
+            ]);
+        }
 
         return view('client.Tennis', compact('response', 'allGames'));
     }

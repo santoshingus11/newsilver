@@ -13,45 +13,44 @@
 <div class="col-md-10 pxxs-0"><router-outlet></router-outlet>
 
   <app-sport-list>
-
     <div class="listing_screen"><!---->
 
       <div class="w-100 d-flex flex-nowrap overflow-auto gap-2 pt-1 pb-1 top-nav-event-1 d-none d-md-flex">
-        @if(!empty($allGames['crickets']))
-        @foreach($allGames['crickets'] as $c)
-        <a href="{{route('Cricket-details',$c['id'])}}">
+       @if(!empty($allGames->crickets))
+         @foreach($allGames->crickets as $c)
+        <a href="{{route('Cricket-details',$c->id)}}">
           <span class="text-nowrap d-flex flex-nowrap gap-2 justify-content-between align-items-center text-white bg-dark p-2 rounded">
             <svg fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1022 1013" class="icon-blink" style="height: 14px;">
               <path d="M335 330q-26 26-60.5 40T203 384q-21 0-41-4.5T124 366l247-242q25 52 15 109t-51 97zm19-235L94 349q-12-8-22.5-18.5T52 308L312 54q6 4 11.5 8.5T335 73q5 5 10 10.5t9 11.5zm-72-59L35 279q-21-43-18-89.5T46 104q25-40 67-62.5T203 19q20 0 40.5 4.5T282 36zm91 660l67 64 582-580L835 0 253 580l66 64L67 895l-19-18-48 48 92 88 48-48-19-19 252-250z">
               </path>
             </svg>
-            <span class="blink" style="font-size: 13px;">{{$c['game_title'] ?? ""}}</span>
+            <span class="blink" style="font-size: 13px;">{{$c->game_title ?? ""}}</span>
           </span>
         </a>
         @endforeach
         @endif
-        @if(!empty($allGames['footballs']))
-        @foreach($allGames['footballs'] as $c)
-        <a href="{{route('Football-Details',$c['id'])}}">
+        @if(!empty($allGames->footballs))
+        @foreach($allGames->footballs as $c)
+        <a href="{{route('Football-Details',$c->id)}}">
           <span class="text-nowrap d-flex flex-nowrap gap-2 justify-content-between align-items-center text-white bg-dark p-2 rounded">
             <svg fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1022 1013" class="icon-blink" style="height: 14px;">
               <path d="M335 330q-26 26-60.5 40T203 384q-21 0-41-4.5T124 366l247-242q25 52 15 109t-51 97zm19-235L94 349q-12-8-22.5-18.5T52 308L312 54q6 4 11.5 8.5T335 73q5 5 10 10.5t9 11.5zm-72-59L35 279q-21-43-18-89.5T46 104q25-40 67-62.5T203 19q20 0 40.5 4.5T282 36zm91 660l67 64 582-580L835 0 253 580l66 64L67 895l-19-18-48 48 92 88 48-48-19-19 252-250z">
               </path>
             </svg>
-            <span class="blink" style="font-size: 13px;">{{$c['game_title'] ?? ""}}</span>
+            <span class="blink" style="font-size: 13px;">{{$c->game_title ?? ""}}</span>
           </span>
         </a>
         @endforeach
         @endif
-        @if(!empty($allGames['tennises']))
-        @foreach($allGames['tennises'] as $c)
-        <a href="{{route('tenis_detail',$c['id'])}}">
+        @if(!empty($allGames->tennises))
+        @foreach($allGames->tennises as $c)
+        <a href="{{route('tenis_detail',$c->id)}}">
           <span class="text-nowrap d-flex flex-nowrap gap-2 justify-content-between align-items-center text-white bg-dark p-2 rounded">
             <svg fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1022 1013" class="icon-blink" style="height: 14px;">
               <path d="M335 330q-26 26-60.5 40T203 384q-21 0-41-4.5T124 366l247-242q25 52 15 109t-51 97zm19-235L94 349q-12-8-22.5-18.5T52 308L312 54q6 4 11.5 8.5T335 73q5 5 10 10.5t9 11.5zm-72-59L35 279q-21-43-18-89.5T46 104q25-40 67-62.5T203 19q20 0 40.5 4.5T282 36zm91 660l67 64 582-580L835 0 253 580l66 64L67 895l-19-18-48 48 92 88 48-48-19-19 252-250z">
               </path>
             </svg>
-            <span class="blink" style="font-size: 13px;">{{$c['game_title'] ?? ""}}</span>
+            <span class="blink" style="font-size: 13px;">{{$c->game_title ?? ""}}</span>
           </span>
         </a>
         @endforeach
@@ -104,60 +103,11 @@
                   <div class="d-flex flex-column h-full align-items-center justify-content-center"><img class="img-fluid" src="{{asset('/')}}/assets/img/icons/98788.png"><!----><b>Roulette</b></div><!----><!---->
                 </a></li><!---->
             </ul>
-            @if(empty($response))
+           
+            
             <div id="game-list-container"></div>
-            @endif
-            @if(!empty($response))
-            @foreach($response as $r)
-            <div class="tab-content">
-              <tab role="tabpanel" aria-labelledby="" class="tab-pane active"><!---->
-                <div>
-                  <div class="row th-head">
-                    <div class="col-lg-7 col-md-5 col-6">
-                      <p>games</p>
-                    </div>
-                    <div class="col-lg-5 col-md-7 col-12 text-center px-xl-0"><span>1</span><span>X</span><span>2</span></div><!---->
-                  </div>
-                  <div class="row td-body" tabindex="0">
-                    @php
-                    $dateTime = new DateTime($r['datetimeGMT'], new DateTimeZone('GMT'));
-                    $dateTime->setTimezone(new DateTimeZone('Asia/Kolkata'));
-                    $istTime = $dateTime->format('Y-m-d H:i:s');
-                    @endphp
-
-                    <div class="col-md-4 col-lg-5 col-6 cursor"><a href="{{ route('Cricket-details',$r['id']) }}">
-                        <p> {{$r['game_title']}}<span>&nbsp;/&nbsp;</span><b>{{$r['datetimeGMT']}} (IST)</b></p>
-                      </a><!----></div>
-
-                    <div class="col-md-1 col-lg-2 col-6 px-lg-0">
-                      <div class="game-icons"><span class="game-icon"><span @if($r['channel_id']!="" ) class="active" @endif></span><!----></span><span class="game-icon"><i class="fa fa-tv v-m icon-tv cursor loginButton"></i><!----></span><span class="game-icon"><img src="{{asset('/')}}/assets/img/icons/ic_fancy.png" class="fancy-icon cursor"><!----></span><span class="game-icon"><img src="{{asset('/')}}/assets/img/icons/ic_bm.png" class="bookmaker-icon cursor"><!----></span></div><!---->
-                    </div>
-                    <div class="col-md-4 col-12 d-sm-none d-block th-head text-center"><span>1</span><span>X</span><span>2</span></div><!---->
-                    <div class="col-md-7 col-lg-5 col-12 pr-xl-0">
-
-                      @if($r['status']==1)
-                      <a href="{{ route('Cricket-details',$r['id']) }}">
-                        <div class="list-event-odds">
-                          <div class="btn-grp-cs"><button class="back"><span class="odd">1.99</span></button><button class="lay"><span class="odd">2</span></button><!----></div>
-                          <div class="btn-grp-cs"><button class="back"><span class="odd">-</span></button><button class="lay"><span class="odd">-</span></button><!----></div>
-                          <div class="btn-grp-cs"><button class="back"><span class="odd">2</span></button><button class="lay"><span class="odd">2.02</span></button><!----></div><!---->
-                        </div>
-                      </a><!---->
-                      @else
-                      <div class="list-event-odds">
-                        <div class="btn-grp-cs"><button class="back"><span class="odd">1.99</span></button><button class="lay"><span class="odd">2</span></button><!----></div>
-                        <div class="btn-grp-cs"><button class="back"><span class="odd">-</span></button><button class="lay"><span class="odd">-</span></button><!----></div>
-                        <div class="btn-grp-cs"><button class="back"><span class="odd">2</span></button><button class="lay"><span class="odd">2.02</span></button><!----></div><!---->
-                      </div>
-                      @endif
-
-                    </div>
-                  </div><!---->
-                </div><!----><!----><!---->
-              </tab><!---->
-            </div>
-            @endforeach
-            @endif
+           
+          
           </tabset>
         </div>
       </div>
@@ -190,6 +140,12 @@
 
 
 </div>
+<!-- Loader -->
+<div id="loader" style="position: fixed; left: 0; top: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.8); z-index: 9999; display: flex; align-items: center; justify-content: center;">
+    <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
 
 
 
@@ -208,18 +164,20 @@
 <script>
   /* Script Goes Here */
   $(document).ready(function() {
+       $('#loader').show();
     // Function to fetch data
     function fetchGameData() {
       $.ajax({
-        url: "{{ route('client-home') }}", // Your route here
+        url: "{{ route('cricker_games_api') }}", // Your route here
         type: 'GET',
         dataType: 'json',
         success: function(data) {
           // Clear the container before appending new data
-          $('#game-list-container').empty();
+         
 
           // Iterate over the response data and append HTML
           if (data.response && data.response.length > 0) {
+               $('#game-list-container').empty();
             data.response.forEach(function(r) {
               // Build the HTML structure
               let gameHtml = `
@@ -284,6 +242,8 @@
               $('#game-list-container').append(gameHtml);
             });
           }
+          $('#loader').fadeOut();
+          
         },
         error: function() {
           console.error('Failed to fetch game data.');
@@ -302,7 +262,7 @@
 
     // Fetch data when the document is ready
     fetchGameData();
-    setInterval(fetchGameData, 5000);
+    setInterval(fetchGameData, 2000);
   });
 
   /* Script Goes Here */
